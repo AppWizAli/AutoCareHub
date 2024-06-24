@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "781334871776",
+    "project_id": "auto-care-hub",
+    "storage_bucket": "auto-care-hub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781334871776:android:eada45ae63d17a50775a85",
+        "android_client_info": {
+          "package_name": "com.hiskytechs.autocarehub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt29aff89Exf5h-q7vb_tJcJGz5a9iGz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

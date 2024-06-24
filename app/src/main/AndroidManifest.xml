@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AutoCareHub"
+        tools:targetApi="31">
+        <activity
+            android:name=".Ui.ActivityMapView2"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityMapView1"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivitySparePartRequest3"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivitySparePartRequest2"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivitySparePartAcess1"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityWorkShopAccess5"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityWorkShopAccess4"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityWorkShopAccess3"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityWorkShopAccess2"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityWorkShupAccess1"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityWorkShopReg3"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityWorkShopReg2"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityWorkshopRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityEditSparePart"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivitySparePart"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivitySupplierInquiryDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivitySupplierInquiryList"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivitySupplierRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityForgetPassword"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityEditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityLoginWorkshop"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityLoginSupplier"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityLoginUser"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivitySupplierSignUp"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityWorkShopSignUp"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivitySignUpAs"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityUserSignUp"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityUserChoice"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityIntro3"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityIntro2"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityIntro1"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivitySplash"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
