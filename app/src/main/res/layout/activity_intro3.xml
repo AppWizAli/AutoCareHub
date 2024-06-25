@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@color/primary"
     android:layout_height="match_parent">
 
     <ImageView
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:src="@drawable/loc" />
+        android:src="@drawable/track" />
 
     <TextView
         android:id="@+id/title"
@@ -19,7 +19,7 @@
         android:layout_below="@id/image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Track Your Ride"
+        android:text="Track Your Service"
         android:fontFamily="@font/poppinsbold"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -33,7 +33,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppinregular"
-        android:text="Know your driver in advance and be \nable to view current location in real time \non the map"
+        android:text="Monitor the progress of your car's \n  modifications in real-time"
         android:textSize="16sp"
         android:textColor="#666" />
 
@@ -43,8 +43,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="172dp"
+        android:textColor="@color/black"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="@color/white"
         android:text="Get Started" />
 
 </RelativeLayout>

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/primary">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
     <ImageView
         android:id="@+id/back_arrow"
         android:layout_width="wrap_content"
@@ -60,6 +63,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="8dp"
         android:text="Forgot Password?"
+        android:layout_marginRight="20dp"
         android:fontFamily="@font/poppinregular"
         android:textColor="@color/secondary" />
 
@@ -72,34 +76,42 @@
         android:layout_marginTop="39dp"
         android:backgroundTint="@color/white"
         android:text="LOG IN"
+        android:textAlignment="center"
         android:fontFamily="@font/poppinsbold"
         android:textColor="@color/secondary"
         android:textStyle="bold" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
 
+    android:layout_centerHorizontal="true"
+    android:layout_below="@id/login_button"
+
+    android:layout_marginTop="16dp"
+    android:orientation="horizontal">
     <TextView
         android:id="@+id/no_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
         android:text="Don't have an account?"
         android:fontFamily="@font/poppinregular"
         android:textColor="#000"
         android:textSize="14sp" />
-
     <TextView
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:layout_toEndOf="@id/no_account"
-        android:layout_toRightOf="@id/no_account"
-        android:text="   Register"
+        android:text="Register"
+        android:paddingHorizontal="7dp"
         android:fontFamily="@font/poppinregular"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="14sp" />
+</LinearLayout>
+
+
+
+
+
 </RelativeLayout>
+</ScrollView>
