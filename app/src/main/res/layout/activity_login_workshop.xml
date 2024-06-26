@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+
     android:background="@color/primary">
 
     <ImageView
@@ -85,7 +87,7 @@
         android:layout_marginTop="16dp"
         android:text="Don't have an account?"
         android:fontFamily="@font/poppinregular"
-        android:textColor="#000"
+        android:textColor="@color/secondary"
         android:textSize="14sp" />
 
     <TextView
@@ -97,7 +99,7 @@
         android:layout_marginTop="16dp"
         android:layout_toEndOf="@id/no_account"
         android:layout_toRightOf="@id/no_account"
-        android:text="   Register"
+        android:text=" Register"
         android:fontFamily="@font/poppinregular"
         android:textStyle="bold"
         android:textColor="@color/white"
