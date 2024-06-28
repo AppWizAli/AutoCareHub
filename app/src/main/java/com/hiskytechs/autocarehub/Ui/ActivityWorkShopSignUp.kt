@@ -65,7 +65,7 @@ class ActivityWorkShopSignUp : AppCompatActivity() {
                     cpassword.error = "Passwords do not match"
                     closeAnimation()
                 } else {
-                    // Check if email already exists
+
                     db.collection("WorkshopUser")
                         .whereEqualTo("email", userEmail)
                         .get()
@@ -76,7 +76,6 @@ class ActivityWorkShopSignUp : AppCompatActivity() {
                                     email.error = "Email is already registered"
                                     closeAnimation()
                                 } else {
-                                    // Create ModelUser object and populate it
                                     val modelUser = ModelUser(
                                         userName = userName,
                                         email = userEmail,
