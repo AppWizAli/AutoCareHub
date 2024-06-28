@@ -44,6 +44,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="224dp"
         android:layout_marginEnd="42dp"
+        android:id="@+id/nextintro2"
         android:layout_marginBottom="80dp"
         android:background="@color/white"
         android:src="@drawable/right_arrow" />

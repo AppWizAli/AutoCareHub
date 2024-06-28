@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/poppinsbold"
-        android:text="SignUp As "
+        android:text="Login  As "
         android:textColor="@color/white"
         android:textSize="19dp"
         android:textStyle="bold"

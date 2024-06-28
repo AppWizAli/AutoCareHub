@@ -8,8 +8,9 @@ import com.hiskytechs.autocarehub.databinding.ActivityEditProfileBinding
 class ActivityEditProfile : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding=ActivityEditProfileBinding.inflate(layoutInflater)
+
         super.onCreate(savedInstanceState)
+        binding=ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }
