@@ -15,9 +15,15 @@ class ActivitySignUpAs : AppCompatActivity() {
         setContentView(binding.root)
         binding.user.setOnClickListener(){
             startActivity(Intent(this@ActivitySignUpAs,ActivityUserSignUp::class.java))
+            finish()
         }
         binding.wrkshop.setOnClickListener(){
             startActivity(Intent(this@ActivitySignUpAs,ActivityWorkShopSignUp::class.java))
+            finish()
+        }
+        binding.backArrow.setOnClickListener(){
+            startActivity(Intent(this@ActivitySignUpAs,ActivityUserChoice::class.java))
+            finish()
         }
     }
 }

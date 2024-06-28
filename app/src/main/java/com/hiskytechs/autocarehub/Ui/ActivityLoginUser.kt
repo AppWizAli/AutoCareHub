@@ -23,12 +23,15 @@ class ActivityLoginUser : AppCompatActivity() {
         binding.apply {
             backArrow.setOnClickListener(){
                 startActivity(Intent(this@ActivityLoginUser,ActivityUserChoice::class.java))
+                finish()
             }
             forgotPassword.setOnClickListener(){
                 startActivity(Intent(this@ActivityLoginUser,ActivityForgetPassword::class.java))
+                finish()
             }
             registerLink.setOnClickListener(){
                 startActivity(Intent(this@ActivityLoginUser,ActivityUserSignUp::class.java))
+                finish()
             }
             loginButton.setOnClickListener {
                 if (useremail.text.toString().isEmpty()) {
@@ -37,8 +40,8 @@ class ActivityLoginUser : AppCompatActivity() {
                     userpswrd.error = "Password is required"}
                     else {
                     db.collection("User")
-                        .whereEqualTo("mail", useremail.text.toString())
-                        .whereEqualTo("pasword", userpswrd.text.toString())
+                        .whereEqualTo("email", useremail.text.toString())
+                        .whereEqualTo("password", userpswrd.text.toString())
                         .get()
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
@@ -46,11 +49,11 @@ class ActivityLoginUser : AppCompatActivity() {
                                 if (querySnapshot != null && !querySnapshot.isEmpty) {
                                     val documentId = querySnapshot.documents[0].id
 
-                                    val sharedPreferences = getSharedPreferences("preference", Context.MODE_PRIVATE)
+                                    val sharedPreferences = getSharedPreferences("Preference", Context.MODE_PRIVATE)
                                     val editor = sharedPreferences.edit()
-                                    editor.putBoolean("IsLog",true)
+                                    editor.putBoolean("isLog",true)
                                     editor.apply()
-                                    editor.putString("userid", documentId)
+                                    editor.putString("userID", documentId)
                                     editor.apply()
 
                                     Toast.makeText(this@ActivityLoginUser, "Login Successful", Toast.LENGTH_SHORT).show()

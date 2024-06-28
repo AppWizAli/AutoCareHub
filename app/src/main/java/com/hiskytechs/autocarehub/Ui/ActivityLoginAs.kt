@@ -17,9 +17,15 @@ class ActivityLoginAs : AppCompatActivity() {
         setContentView(binding.root)
         binding.user.setOnClickListener(){
             startActivity(Intent(this@ActivityLoginAs,ActivityLoginUser::class.java))
+            finish()
         }
         binding.wrkshop.setOnClickListener(){
             startActivity(Intent(this@ActivityLoginAs,ActivityLoginWorkshop::class.java))
+            finish()
+        }
+        binding.backArrow.setOnClickListener(){
+            startActivity(Intent(this@ActivityLoginAs,ActivityUserChoice::class.java))
+            finish()
         }
     }
 }

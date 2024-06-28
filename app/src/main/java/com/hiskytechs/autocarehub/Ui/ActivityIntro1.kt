@@ -14,6 +14,7 @@ class ActivityIntro1 : AppCompatActivity() {
         setContentView(binding.root)
         binding.nextintro1.setOnClickListener(){
             startActivity(Intent(this@ActivityIntro1,ActivityIntro2::class.java))
+            finish()
         }
     }
 }

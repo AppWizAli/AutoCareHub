@@ -16,6 +16,7 @@ class ActivityIntro3 : AppCompatActivity() {
         setContentView(binding.root)
         binding.getStartedButton.setOnClickListener(){
             startActivity(Intent(this@ActivityIntro3,ActivityUserChoice::class.java))
+            finish()
         }
     }
 }

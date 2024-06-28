@@ -70,18 +70,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
+           android:gravity="center"
             android:text="Don' have an account? "
             android:textColor="@color/secondary" />
         <TextView
             android:id="@+id/register_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
             android:text="Register Now"
             android:textColor="@color/white" />
     </LinearLayout>

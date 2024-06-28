@@ -25,26 +25,29 @@ class ActivityWorkShopSignUp : AppCompatActivity() {
         binding.apply {
             backArrow.setOnClickListener(){
                 startActivity(Intent(this@ActivityWorkShopSignUp,ActivityUserChoice::class.java))
+                finish()
             }
             register.setOnClickListener(){
                 startActivity(Intent(this@ActivityWorkShopSignUp,ActivityLoginWorkshop::class.java))
+                finish()
             }
             signupButton.setOnClickListener()
             {
                 showAnimation()
 
-                val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
-                if (email.text.toString().isEmpty()) {
-                    email.error = "Email is required"
+                val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+                val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{6,}$"
+                if (username.text.toString().isEmpty()) {
+                    username.error = "Email is required"
                 } else if (!Pattern.compile(emailPattern).matcher(email.text.toString()).matches()) {
                     email.error = "Invalid email address"
-                } else if (username.text.toString().isEmpty()) {
-                    username.error = "Username is required"
                 } else if (pswrd.text.toString().isEmpty()) {
                     pswrd.error = "Password is required"
-                } else if (cpassword.text.toString().isEmpty()) {
-                    cpassword .error = "Confirm password is required"
+                } else if (!Pattern.compile(passwordPattern).matcher(pswrd.text.toString()).matches()) {
+                    pswrd.error = "Password must be at least 6 characters long and include an upper case letter, a lower case letter, a number, and a special character"}
+                else if (cpassword.text.toString().isEmpty()) {
+                    cpassword.error = "Confirm password is required"
                 } else if (pswrd.text.toString() != cpassword.text.toString()) {
                     cpassword.error = "Passwords do not match"
                 } else {
@@ -54,11 +57,12 @@ class ActivityWorkShopSignUp : AppCompatActivity() {
                     modelUser.cpassword=binding.cpassword.text.toString()
                     db.collection("WorkshopUser").add(modelUser)
                         .addOnSuccessListener {documentref->
-                            modelUser.userID=documentref.id
-                            db.collection("User").document(documentref.id).set(modelUser)
+                            modelUser.workshopOwnerID=documentref.id
+                            db.collection("WorkshopUser").document(documentref.id).set(modelUser)
                             closeAnimation()
                             Toast.makeText(this@ActivityWorkShopSignUp, "SignUp successfull", Toast.LENGTH_SHORT).show()
-
+                            startActivity(Intent(this@ActivityWorkShopSignUp, MainActivity::class.java))
+                            finish()
                         }
                         .addOnFailureListener()
                         {
