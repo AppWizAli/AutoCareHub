@@ -23,55 +23,94 @@ class ActivityWorkShopSignUp : AppCompatActivity() {
         setContentView(binding.root)
            var modelUser=ModelUser()
         binding.apply {
-            backArrow.setOnClickListener(){
-                startActivity(Intent(this@ActivityWorkShopSignUp,ActivityUserChoice::class.java))
+            backArrow.setOnClickListener {
+                startActivity(Intent(this@ActivityWorkShopSignUp, ActivityUserChoice::class.java))
                 finish()
             }
-            register.setOnClickListener(){
-                startActivity(Intent(this@ActivityWorkShopSignUp,ActivityLoginWorkshop::class.java))
+
+            register.setOnClickListener {
+                startActivity(Intent(this@ActivityWorkShopSignUp, ActivityLoginWorkshop::class.java))
                 finish()
             }
-            signupButton.setOnClickListener()
-            {
+
+            signupButton.setOnClickListener {
                 showAnimation()
 
-
+                val userEmail = email.text.toString().trim()
+                val userName = username.text.toString().trim()
+                val userPassword = pswrd.text.toString().trim()
+                val confirmPassword = cpassword.text.toString().trim()
                 val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                 val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{6,}$"
-                if (username.text.toString().isEmpty()) {
-                    username.error = "Email is required"
-                } else if (!Pattern.compile(emailPattern).matcher(email.text.toString()).matches()) {
-                    email.error = "Invalid email address"
-                } else if (pswrd.text.toString().isEmpty()) {
-                    pswrd.error = "Password is required"
-                } else if (!Pattern.compile(passwordPattern).matcher(pswrd.text.toString()).matches()) {
-                    pswrd.error = "Password must be at least 6 characters long and include an upper case letter, a lower case letter, a number, and a special character"}
-                else if (cpassword.text.toString().isEmpty()) {
-                    cpassword.error = "Confirm password is required"
-                } else if (pswrd.text.toString() != cpassword.text.toString()) {
-                    cpassword.error = "Passwords do not match"
-                } else {
-                    modelUser.userName=username.text.toString()
-                    modelUser.email=email.text.toString()
-                    modelUser.password=binding.pswrd.text.toString()
-                    modelUser.cpassword=binding.cpassword.text.toString()
-                    db.collection("WorkshopUser").add(modelUser)
-                        .addOnSuccessListener {documentref->
-                            modelUser.workshopOwnerID=documentref.id
-                            db.collection("WorkshopUser").document(documentref.id).set(modelUser)
-                            closeAnimation()
-                            Toast.makeText(this@ActivityWorkShopSignUp, "SignUp successfull", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this@ActivityWorkShopSignUp, MainActivity::class.java))
-                            finish()
-                        }
-                        .addOnFailureListener()
-                        {
-                            Toast.makeText(this@ActivityWorkShopSignUp, "SignUp unsuccessfull", Toast.LENGTH_SHORT).show()
 
-                            closeAnimation()
+                if (userName.isEmpty()) {
+                    username.error = "Username is required"
+                    closeAnimation()
+                } else if (userEmail.isEmpty()) {
+                    email.error = "Email is required"
+                    closeAnimation()
+                } else if (!Pattern.compile(emailPattern).matcher(userEmail).matches()) {
+                    email.error = "Invalid email address"
+                    closeAnimation()
+                } else if (userPassword.isEmpty()) {
+                    pswrd.error = "Password is required"
+                    closeAnimation()
+                } else if (!Pattern.compile(passwordPattern).matcher(userPassword).matches()) {
+                    pswrd.error = "Password must be at least 6 characters long and include an upper case letter, a lower case letter, a number, and a special character"
+                    closeAnimation()
+                } else if (confirmPassword.isEmpty()) {
+                    cpassword.error = "Confirm password is required"
+                    closeAnimation()
+                } else if (userPassword != confirmPassword) {
+                    cpassword.error = "Passwords do not match"
+                    closeAnimation()
+                } else {
+                    // Check if email already exists
+                    db.collection("WorkshopUser")
+                        .whereEqualTo("email", userEmail)
+                        .get()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val querySnapshot = task.result
+                                if (querySnapshot != null && !querySnapshot.isEmpty) {
+                                    email.error = "Email is already registered"
+                                    closeAnimation()
+                                } else {
+                                    // Create ModelUser object and populate it
+                                    val modelUser = ModelUser(
+                                        userName = userName,
+                                        email = userEmail,
+                                        password = userPassword,
+                                    )
+                                    db.collection("WorkshopUser").add(modelUser)
+                                        .addOnSuccessListener { documentRef ->
+                                            modelUser.workshopOwnerID = documentRef.id
+                                            db.collection("WorkshopUser").document(documentRef.id).set(modelUser)
+                                                .addOnSuccessListener {
+                                                    closeAnimation()
+                                                    Toast.makeText(this@ActivityWorkShopSignUp, "SignUp successful", Toast.LENGTH_SHORT).show()
+                                                    startActivity(Intent(this@ActivityWorkShopSignUp, MainActivity::class.java))
+                                                    finish()
+                                                }
+                                                .addOnFailureListener { e ->
+                                                    Toast.makeText(this@ActivityWorkShopSignUp, "SignUp unsuccessful: ${e.message}", Toast.LENGTH_SHORT).show()
+                                                    closeAnimation()
+                                                }
+                                        }
+                                        .addOnFailureListener { e ->
+                                            Toast.makeText(this@ActivityWorkShopSignUp, "SignUp unsuccessful: ${e.message}", Toast.LENGTH_SHORT).show()
+                                            closeAnimation()
+                                        }
+                                }
+                            } else {
+                                Toast.makeText(this@ActivityWorkShopSignUp, "Error checking email: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                                closeAnimation()
+                            }
                         }
-                }}
+                }
+            }
         }
+
     }
 
 

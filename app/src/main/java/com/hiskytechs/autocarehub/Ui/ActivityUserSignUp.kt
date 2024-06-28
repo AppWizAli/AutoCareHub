@@ -1,6 +1,7 @@
 package com.hiskytechs.autocarehub.Ui
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,60 +23,95 @@ class ActivityUserSignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUserSignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var modelUser=ModelUser()
 
-binding.apply {
-    backArrow.setOnClickListener(){
-        startActivity(Intent(this@ActivityUserSignUp,ActivityUserChoice::class.java))
-            finish()
-    }
-    registerLink.setOnClickListener(){
-        startActivity(Intent(this@ActivityUserSignUp,ActivityLoginUser::class.java))
-        finish()
-    }
-       loginButton.setOnClickListener()
-        {
-            showAnimation()
-
-            val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-            val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{6,}$"
-            if (useremail.text.toString().isEmpty()) {
-                useremail.error = "Email is required"
-            } else if (!Pattern.compile(emailPattern).matcher(useremail.text.toString()).matches()) {
-                useremail.error = "Invalid email address"
-            } else if (username.text.toString().isEmpty()) {
-                username.error = "Username is required"
-            } else if (userpswrd.text.toString().isEmpty()) {
-                userpswrd.error = "Password is required"
+        binding.apply {
+            backArrow.setOnClickListener {
+                startActivity(Intent(this@ActivityUserSignUp, ActivityUserChoice::class.java))
+                finish()
             }
-            else if (!Pattern.compile(passwordPattern).matcher(userpswrd.text.toString()).matches()) {
-                userpswrd.error = "Password must be at least 6 characters long and include an upper case letter, a lower case letter, a number, and a special character"}
-            else if (cpswrd.text.toString().isEmpty()) {
-                cpswrd.error = "Confirm password is required"
-            } else if (userpswrd.text.toString() != cpswrd.text.toString()) {
-                cpswrd.error = "Passwords do not match"
-            } else {
-                modelUser.userName=username.text.toString()
-            modelUser.email=useremail.text.toString()
-            modelUser.password=binding.userpswrd.text.toString()
-            modelUser.cpassword=binding.cpswrd.text.toString()
-            db.collection("User").add(modelUser)
-                .addOnSuccessListener {documentref->
-                    modelUser.userID=documentref.id
-                    db.collection("User").document(documentref.id).set(modelUser)
-                    closeAnimation()
-                    Toast.makeText(this@ActivityUserSignUp, "SignUp successfull", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@ActivityUserSignUp, MainActivity::class.java))
-                    finish()
-                }
-                .addOnFailureListener()
-                {
-                    Toast.makeText(this@ActivityUserSignUp, "SignUp unsuccessfull", Toast.LENGTH_SHORT).show()
 
+            registerLink.setOnClickListener {
+                startActivity(Intent(this@ActivityUserSignUp, ActivityLoginUser::class.java))
+                finish()
+            }
+
+            loginButton.setOnClickListener {
+                showAnimation()
+
+                val userEmail = useremail.text.toString().trim()
+                val userName = username.text.toString().trim()
+                val userPassword = userpswrd.text.toString().trim()
+                val confirmPassword = cpswrd.text.toString().trim()
+                val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+                val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{6,}$"
+
+                if (userEmail.isEmpty()) {
+                    useremail.error = "Email is required"
                     closeAnimation()
+                } else if (!Pattern.compile(emailPattern).matcher(userEmail).matches()) {
+                    useremail.error = "Invalid email address"
+                    closeAnimation()
+                } else if (userName.isEmpty()) {
+                    username.error = "Username is required"
+                    closeAnimation()
+                } else if (userPassword.isEmpty()) {
+                    userpswrd.error = "Password is required"
+                    closeAnimation()
+                } else if (!Pattern.compile(passwordPattern).matcher(userPassword).matches()) {
+                    userpswrd.error = "Password must be at least 6 characters long and include an upper case letter, a lower case letter, a number, and a special character"
+                    closeAnimation()
+                } else if (confirmPassword.isEmpty()) {
+                    cpswrd.error = "Confirm password is required"
+                    closeAnimation()
+                } else if (userPassword != confirmPassword) {
+                    cpswrd.error = "Passwords do not match"
+                    closeAnimation()
+                } else {
+                    db.collection("User")
+                        .whereEqualTo("email", userEmail)
+                        .get()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val querySnapshot = task.result
+                                if (querySnapshot != null && !querySnapshot.isEmpty) {
+                                    useremail.error = "Email is already registered"
+                                    closeAnimation()
+                                } else {
+                                    var modelUser = ModelUser(
+                                        userName = userName,
+                                        email = userEmail,
+                                        password = userPassword,
+                                    )
+                                    db.collection("User").add(modelUser)
+                                        .addOnSuccessListener { documentRef ->
+                                            modelUser.userID = documentRef.id
+                                            db.collection("User").document(documentRef.id).set(modelUser)
+                                                .addOnSuccessListener {
+                                                    closeAnimation()
+                                                    Toast.makeText(this@ActivityUserSignUp, "SignUp successful", Toast.LENGTH_SHORT).show()
+                                                    startActivity(Intent(this@ActivityUserSignUp, MainActivity::class.java))
+                                                    finish()
+                                                }
+                                                .addOnFailureListener { e ->
+                                                    Toast.makeText(this@ActivityUserSignUp, "SignUp unsuccessful", Toast.LENGTH_SHORT).show()
+                                                    closeAnimation()
+                                                }
+                                        }
+                                        .addOnFailureListener {
+                                            Toast.makeText(this@ActivityUserSignUp, "SignUp unsuccessful", Toast.LENGTH_SHORT).show()
+                                            closeAnimation()
+                                        }
+                                }
+                            } else {
+                                Toast.makeText(this@ActivityUserSignUp, "Error checking email", Toast.LENGTH_SHORT).show()
+                                closeAnimation()
+                            }
+                        }
                 }
-        }}
-    }
+            }
+        }
+
+
     }
 
 
