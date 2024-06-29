@@ -1,88 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:background="@color/primary"
-   >
+    android:padding="16dp">
+
     <ImageView
         android:id="@+id/back_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/backward_arrow" />
 
     <TextView
+        android:id="@+id/welcome_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:fontFamily="@font/poppinsbold"
-        android:layout_gravity="center_horizontal"
+        android:layout_below="@id/back_arrow"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:fontFamily="monospace"
+        android:textStyle="bold"
+        android:text="User Login"
         android:textColor="@color/black"
-        android:text="Welcome back! Glad \nto see you, Again!"
-        android:textSize="19sp" />
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/greeting_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcome_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppinregular"
+        android:text="Glad to see you again!"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/useremail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
+        android:layout_height="45dp"
+        android:layout_below="@id/greeting_text"
         android:layout_marginTop="40dp"
         android:layout_marginHorizontal="20dp"
-        android:fontFamily="@font/poppinregular"
-        android:hint="Enter Email"
+        android:paddingStart="10dp"
+        android:inputType="textEmailAddress"
         android:background="@drawable/shapelogin"
-        android:padding="9dp" />
+        android:fontFamily="@font/poppinregular"
+        android:hint="Enter Email" />
+
     <EditText
         android:id="@+id/userpswrd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
+        android:layout_height="45dp"
+        android:layout_below="@id/useremail"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="20dp"
+        android:background="@drawable/shapelogin"
         android:fontFamily="@font/poppinregular"
         android:hint="Enter Password"
-        android:background="@drawable/shapelogin"
-        android:padding="9dp" />
+        android:inputType="textPassword"
+    android:paddingStart="10dp" />
+
     <TextView
         android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="200dp"
+        android:layout_below="@id/userpswrd"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentEnd="true"
         android:text="Forgot Password?"
-        android:layout_marginTop="5dp"
         android:textColor="@color/secondary" />
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/login_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:fontFamily="@font/poppinsbold"
-        android:layout_marginHorizontal="50dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/forgot_password"
         android:layout_marginTop="30dp"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/white"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginHorizontal="50dp"
+        android:text="Login"
+        app:cornerRadius="10dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+        android:fontFamily="monospace"/>
 
     <LinearLayout
+        android:id="@+id/register_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/login_button"
+        android:orientation="horizontal"
+        android:gravity="center">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:gravity="center"
-            android:text="Don' have an account? "
-            android:textColor="@color/secondary" />
+            android:text="Don't have an account? "
+            android:textColor="@color/secondary"
+            android:fontFamily="@font/poppinregular" />
+
         <TextView
             android:id="@+id/register_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register Now"
-            android:textColor="@color/white" />
+            android:textColor="#FF5722"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppinregular" />
+
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

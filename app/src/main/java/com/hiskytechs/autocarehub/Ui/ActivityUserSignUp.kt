@@ -26,8 +26,7 @@ class ActivityUserSignUp : AppCompatActivity() {
 
         binding.apply {
             backArrow.setOnClickListener {
-                startActivity(Intent(this@ActivityUserSignUp, ActivityUserChoice::class.java))
-                finish()
+               finish()
             }
 
             registerLink.setOnClickListener {

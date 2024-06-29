@@ -29,17 +29,17 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                     startActivity(Intent(this@ActivityLoginWorkshop,ActivityForgetPassword::class.java))
                 }
                 register.setOnClickListener(){
-                    startActivity(Intent(this@ActivityLoginWorkshop,ActivityUserSignUp::class.java))
+                    startActivity(Intent(this@ActivityLoginWorkshop,ActivityWorkShopSignUp::class.java))
                 }
             loginButton.setOnClickListener {
-                if (username.text.toString().isEmpty()) {
-                    username.error = "Email is required"}
-                else if (password.text.toString().isEmpty()) {
-                    password.error = "Password is required"}
+                if (useremail.text.toString().isEmpty()) {
+                    useremail.error = "Email is required"}
+                else if (userpswrd.text.toString().isEmpty()) {
+                    userpswrd.error = "Password is required"}
                  else {
                     db.collection("WorkshopUser")
-                        .whereEqualTo("userName", username.text.toString())
-                        .whereEqualTo("password", password.text.toString())
+                        .whereEqualTo("userName", useremail.text.toString())
+                        .whereEqualTo("password", userpswrd.text.toString())
                         .get()
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {

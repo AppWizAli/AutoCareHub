@@ -22,7 +22,6 @@ class ActivityLoginUser : AppCompatActivity() {
         setContentView(binding.root)
         binding.apply {
             backArrow.setOnClickListener(){
-                startActivity(Intent(this@ActivityLoginUser,ActivityUserChoice::class.java))
                 finish()
             }
             forgotPassword.setOnClickListener(){

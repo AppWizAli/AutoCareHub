@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.AutoCareHub" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar">true</item> <!-- This makes the status bar icons dark -->
     </style>
 
     <style name="Theme.AutoCareHub" parent="Base.Theme.AutoCareHub" />
