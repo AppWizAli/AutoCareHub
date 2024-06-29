@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.FragmentHome">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+            <!-- Upper Yellow Bar with Icons and Logo -->
+            <RelativeLayout
+                android:id="@+id/r1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFD700"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/icon_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_miscellaneous_services_24" />
+
+                <ImageView
+                    android:id="@+id/app_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/car" />
+
+                <ImageView
+                    android:id="@+id/icon_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/baseline_shopping_cart_24" />
+            </RelativeLayout>
+
+            <ViewFlipper
+                android:id="@+id/image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/r1"
+                android:autoStart="true"
+                android:flipInterval="3000">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/car" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo" />
+            </ViewFlipper>
+
+            <TextView
+                android:id="@+id/news_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_slider"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:text="News"
+                android:textColor="@color/primary2"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/news_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/news_title"
+                android:layout_marginTop="10dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/recently_added_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/news_recycler_view"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Recently added"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recently_added_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/recently_added_title"
+                android:layout_marginTop="10dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:padding="8dp" />
+
+        </RelativeLayout>
+    </ScrollView>
 </FrameLayout>
