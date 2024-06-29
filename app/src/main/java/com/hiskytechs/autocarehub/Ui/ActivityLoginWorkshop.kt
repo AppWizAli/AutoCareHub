@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
-import com.hiskytechs.autocarehub.R
-import com.hiskytechs.autocarehub.databinding.ActivityIntro1Binding
 import com.hiskytechs.autocarehub.databinding.ActivityLoginWorkshopBinding
 
 class ActivityLoginWorkshop : AppCompatActivity() {
@@ -55,7 +53,7 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                                     editor.apply()
 
                                     Toast.makeText(this@ActivityLoginWorkshop, "Login Successful", Toast.LENGTH_SHORT).show()
-                                    startActivity(Intent(this@ActivityLoginWorkshop, MainActivity::class.java))
+                                    startActivity(Intent(this@ActivityLoginWorkshop, ActivityWorkShopHome::class.java))
                                     finish()
                                 } else {
                                     Toast.makeText(this@ActivityLoginWorkshop, "Invalid email or password", Toast.LENGTH_SHORT).show()

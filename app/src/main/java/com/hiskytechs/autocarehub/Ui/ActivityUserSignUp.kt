@@ -31,7 +31,7 @@ class ActivityUserSignUp : AppCompatActivity() {
 
             registerLink.setOnClickListener {
                 startActivity(Intent(this@ActivityUserSignUp, ActivityLoginUser::class.java))
-                finish()
+
             }
 
             loginButton.setOnClickListener {
@@ -88,7 +88,7 @@ class ActivityUserSignUp : AppCompatActivity() {
                                                 .addOnSuccessListener {
                                                     closeAnimation()
                                                     Toast.makeText(this@ActivityUserSignUp, "SignUp successful", Toast.LENGTH_SHORT).show()
-                                                    startActivity(Intent(this@ActivityUserSignUp, MainActivity::class.java))
+                                                    startActivity(Intent(this@ActivityUserSignUp, ActivityLoginUser::class.java))
                                                     finish()
                                                 }
                                                 .addOnFailureListener { e ->

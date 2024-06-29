@@ -20,11 +20,11 @@ class ActivityLoginAs : AppCompatActivity() {
 
         binding.user.setOnClickListener {
             startActivity(Intent(this@ActivityLoginAs, ActivityLoginUser::class.java))
-            finish()
+
         }
         binding.wrkshop.setOnClickListener {
             startActivity(Intent(this@ActivityLoginAs, ActivityLoginWorkshop::class.java))
-            finish()
+
         }
         binding.backArrow.setOnClickListener {
              finish()

@@ -26,11 +26,11 @@ class ActivityLoginUser : AppCompatActivity() {
             }
             forgotPassword.setOnClickListener(){
                 startActivity(Intent(this@ActivityLoginUser,ActivityForgetPassword::class.java))
-                finish()
+
             }
             registerLink.setOnClickListener(){
                 startActivity(Intent(this@ActivityLoginUser,ActivityUserSignUp::class.java))
-                finish()
+
             }
             loginButton.setOnClickListener {
                 if (useremail.text.toString().isEmpty()) {

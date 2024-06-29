@@ -28,18 +28,18 @@ class ActivityWorkShopSignUp : AppCompatActivity() {
                 finish()
             }
 
-            register.setOnClickListener {
+            binding.registerLink.setOnClickListener {
                 startActivity(Intent(this@ActivityWorkShopSignUp, ActivityLoginWorkshop::class.java))
-                finish()
+
             }
 
-            signupButton.setOnClickListener {
+            binding.loginButton.setOnClickListener {
                 showAnimation()
 
-                val userEmail = email.text.toString().trim()
+                val userEmail = useremail.text.toString().trim()
                 val userName = username.text.toString().trim()
-                val userPassword = pswrd.text.toString().trim()
-                val confirmPassword = cpassword.text.toString().trim()
+                val userPassword = userpswrd.text.toString().trim()
+                val confirmPassword = cpswrd.text.toString().trim()
                 val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                 val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{6,}$"
 
@@ -47,22 +47,22 @@ class ActivityWorkShopSignUp : AppCompatActivity() {
                     username.error = "Username is required"
                     closeAnimation()
                 } else if (userEmail.isEmpty()) {
-                    email.error = "Email is required"
+                    useremail.error = "Email is required"
                     closeAnimation()
                 } else if (!Pattern.compile(emailPattern).matcher(userEmail).matches()) {
-                    email.error = "Invalid email address"
+                    useremail.error = "Invalid email address"
                     closeAnimation()
                 } else if (userPassword.isEmpty()) {
-                    pswrd.error = "Password is required"
+                    userpswrd.error = "Password is required"
                     closeAnimation()
                 } else if (!Pattern.compile(passwordPattern).matcher(userPassword).matches()) {
-                    pswrd.error = "Password must be at least 6 characters long and include an upper case letter, a lower case letter, a number, and a special character"
+                    userpswrd.error = "Password must be at least 6 characters long and include an upper case letter, a lower case letter, a number, and a special character"
                     closeAnimation()
                 } else if (confirmPassword.isEmpty()) {
-                    cpassword.error = "Confirm password is required"
+                    cpswrd.error = "Confirm password is required"
                     closeAnimation()
                 } else if (userPassword != confirmPassword) {
-                    cpassword.error = "Passwords do not match"
+                    cpswrd.error = "Passwords do not match"
                     closeAnimation()
                 } else {
 
@@ -73,7 +73,7 @@ class ActivityWorkShopSignUp : AppCompatActivity() {
                             if (task.isSuccessful) {
                                 val querySnapshot = task.result
                                 if (querySnapshot != null && !querySnapshot.isEmpty) {
-                                    email.error = "Email is already registered"
+                                    useremail.error = "Email is already registered"
                                     closeAnimation()
                                 } else {
                                     val modelUser = ModelUser(
@@ -88,7 +88,7 @@ class ActivityWorkShopSignUp : AppCompatActivity() {
                                                 .addOnSuccessListener {
                                                     closeAnimation()
                                                     Toast.makeText(this@ActivityWorkShopSignUp, "SignUp successful", Toast.LENGTH_SHORT).show()
-                                                    startActivity(Intent(this@ActivityWorkShopSignUp, MainActivity::class.java))
+                                                    startActivity(Intent(this@ActivityWorkShopSignUp, ActivityLoginWorkshop::class.java))
                                                     finish()
                                                 }
                                                 .addOnFailureListener { e ->

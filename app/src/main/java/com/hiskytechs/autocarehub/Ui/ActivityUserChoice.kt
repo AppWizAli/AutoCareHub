@@ -22,7 +22,7 @@ class ActivityUserChoice : AppCompatActivity() {
         }
         binding.sgn.setOnClickListener(){
           startActivity(Intent(this@ActivityUserChoice,ActivitySignUpAs::class.java))
-            finish()
+
         }
        binding. backArrow.setOnClickListener(){
             finish()

@@ -25,4 +25,25 @@
         android:name="com.hiskytechs.autocarehub.Fragments.FragmentWorkshop"
         android:label="fragment_workshop"
         tools:layout="@layout/fragment_workshop" />
+    <fragment
+        android:id="@+id/fragmentLogout2"
+        android:name="com.hiskytechs.autocarehub.Fragments.FragmentLogout"
+        android:label="fragment_logout"
+        tools:layout="@layout/fragment_logout" />
+    <fragment
+        android:id="@+id/fragmentPrivacy"
+        android:name="com.hiskytechs.autocarehub.Fragments.FragmentPrivacy"
+        android:label="fragment_privacy"
+        tools:layout="@layout/fragment_privacy" />
+    <fragment
+        android:id="@+id/fragmentSupport"
+        android:name="com.hiskytechs.autocarehub.Fragments.FragmentSupport"
+        android:label="fragment_support"
+        tools:layout="@layout/fragment_support" />
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.hiskytechs.autocarehub.Fragments.FragmentProfile"
+        android:label="fragment_profile2"
+        tools:layout="@layout/fragment_profile2" />
+
 </navigation>
