@@ -6,20 +6,35 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.example.carrepairapp.model.ModelUser
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.adapters.AdapterNews
 import com.hiskytechs.autocarehub.adapters. ImageViewPagerAdapter
 import com.hiskytechs.autocarehub.models.ModelNews
 
 class FragmentHome : Fragment() {
+    var db=Firebase.firestore
+
+
+
+
+    private lateinit var mySharedPref: MySharedPref
+
+
+
+
+
+
     private lateinit var viewPager: ViewPager
     private lateinit var adapter: ImageViewPagerAdapter
     private lateinit var newsRecyclerView: RecyclerView
@@ -51,13 +66,48 @@ class FragmentHome : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_home, container, false)
         viewPager = rootView.findViewById(R.id.viewPager)
 
-        adapter = ImageViewPagerAdapter(requireContext(), imageList)
+        adapter =
+           ImageViewPagerAdapter(requireContext(), imageList)
         viewPager.adapter = adapter
         activity?.window?.let { window ->
             window.statusBarColor = resources.getColor(R.color.primary2, null)
             val controller = ViewCompat.getWindowInsetsController(window.decorView)
             controller?.isAppearanceLightStatusBars = false // White text
         }
+
+
+
+
+
+
+
+        mySharedPref=MySharedPref(requireActivity())
+
+
+
+
+
+
+
+
+        var userid=mySharedPref.getUserDocId()
+
+
+
+
+
+        db.collection("User").document(userid).get()
+            .addOnSuccessListener { document->
+
+                var modelUser=document.toObject(ModelUser::class.java)!!
+
+                Toast.makeText(requireActivity(), modelUser.userName, Toast.LENGTH_SHORT).show()
+            }
+
+
+
+
+
         startAutoScroll()
 
         setupRecyclerView()
@@ -70,7 +120,7 @@ class FragmentHome : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        newsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+     //   newsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         fetchNewsFromFirestore()
     }
 

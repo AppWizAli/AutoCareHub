@@ -8,18 +8,28 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.databinding.ActivityIntro1Binding
 import com.hiskytechs.autocarehub.databinding.ActivityLoginUserBinding
 
 class ActivityLoginUser : AppCompatActivity() {
     private lateinit var binding: ActivityLoginUserBinding
+
+  private lateinit var mySharedPref: MySharedPref
+
     private lateinit var dialog: Dialog
     private var db=Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityLoginUserBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+
+       mySharedPref=MySharedPref(this@ActivityLoginUser)
+
+
+
         binding.apply {
             backArrow.setOnClickListener(){
                 finish()
@@ -38,7 +48,7 @@ class ActivityLoginUser : AppCompatActivity() {
                 else if (userpswrd.text.toString().isEmpty()) {
                     userpswrd.error = "Password is required"}
                     else {
-                    db.collection("User")
+                  db.collection("User")
                         .whereEqualTo("email", useremail.text.toString())
                         .whereEqualTo("password", userpswrd.text.toString())
                         .get()
@@ -47,15 +57,11 @@ class ActivityLoginUser : AppCompatActivity() {
                                 val querySnapshot = task.result
                                 if (querySnapshot != null && !querySnapshot.isEmpty) {
                                     val documentId = querySnapshot.documents[0].id
-
-                                    val sharedPreferences = getSharedPreferences("Preference", Context.MODE_PRIVATE)
-                                    val editor = sharedPreferences.edit()
-                                    editor.putBoolean("isLog",true)
-                                    editor.apply()
-                                    editor.putString("userID", documentId)
-                                    editor.apply()
-
+mySharedPref.saveUserDocId(documentId)
                                     Toast.makeText(this@ActivityLoginUser, "Login Successful", Toast.LENGTH_SHORT).show()
+                                mySharedPref.saveuserLogin()
+
+
                                     startActivity(Intent(this@ActivityLoginUser, MainActivity::class.java))
                                     finish()
                                 } else {
