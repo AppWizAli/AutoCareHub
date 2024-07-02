@@ -84,6 +84,7 @@
         <Spinner
             android:id="@+id/spinner_services"
             android:layout_width="match_parent"
+            android:layout_marginHorizontal="20dp"
             android:layout_height="45dp"
             android:background="@drawable/shapelogin"
             android:layout_marginTop="20dp"

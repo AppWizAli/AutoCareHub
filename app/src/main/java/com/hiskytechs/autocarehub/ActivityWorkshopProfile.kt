@@ -11,10 +11,9 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.hiskytechs.autocarehub.Models.ModelWorkshop
 import com.hiskytechs.autocarehub.databinding.ActivityWorkshopProfileBinding
-
 class ActivityWorkshopProfile : AppCompatActivity() {
     private lateinit var binding: ActivityWorkshopProfileBinding
-    private var db = Firebase.firestore
+    private val db = Firebase.firestore
     private lateinit var workshopId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,15 +33,12 @@ class ActivityWorkshopProfile : AppCompatActivity() {
                 if (documentSnapshot.exists()) {
                     val modelWorkshop = documentSnapshot.toObject(ModelWorkshop::class.java)
                     modelWorkshop?.let {
-
                         binding.apply {
                             username.text = it.workshopName
                             email.text = it.workshopEmail
                             Address.text = it.workshopAddress
                             phone.text = it.workshopPhoneNumber
-                            Glide.with(this@ActivityWorkshopProfile)
-                                .load(it.workshopImage)
-                                .into(profileImage)
+
                         }
                     }
                 } else {

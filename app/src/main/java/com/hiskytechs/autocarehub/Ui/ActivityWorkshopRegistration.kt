@@ -20,13 +20,7 @@ import java.util.regex.Pattern
 class ActivityWorkshopRegistration : AppCompatActivity() {
     private lateinit var binding: ActivityWorkshopRegistrationBinding
     private val db = Firebase.firestore
-    private val storage = Firebase.storage
     private lateinit var dialog: Dialog
-    private var selectedImageUri: Uri? = null
-
-    companion object {
-        const val PICK_IMAGE_REQUEST = 1
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +28,6 @@ class ActivityWorkshopRegistration : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
-            profileImage.setOnClickListener {
-                val intent = Intent(Intent.ACTION_PICK)
-                intent.type = "image/*"
-                startActivityForResult(intent, PICK_IMAGE_REQUEST)
-            }
-
             backArrow.setOnClickListener {
                 finish()
             }
@@ -67,56 +55,42 @@ class ActivityWorkshopRegistration : AppCompatActivity() {
                 } else if (userPhone.isEmpty()) {
                     phone.error = "Phone Number is required"
                     closeAnimation()
-                }  else if (selectedImageUri == null) {
-                    Toast.makeText(
-                        this@ActivityWorkshopRegistration,
-                        "Please select an image",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    closeAnimation()
                 } else {
-                    selectedImageUri?.let {
-                        uploadImage(it) { imageUrl ->
-                            val modelWorkshop = ModelWorkshop(
-                                workshopName = userName,
-                                workshopEmail = userEmail,
-                                workshopAddress = userAddress,
-                                workshopPhoneNumber = userPhone,
-                                workshopImage = imageUrl
-                            )
-                            db.collection("WorkshopRegistration").add(modelWorkshop)
-                                .addOnSuccessListener { documentRef ->
-                                    modelWorkshop.workshopId = documentRef.id
-                                    db.collection("WorkshopRegistration").document(documentRef.id)
-                                        .set(modelWorkshop)
-                                        .addOnSuccessListener {
-                                            closeAnimation()
-                                            Log.d("ActivityWorkshopRegistration", "Registration successful")
-                                            Toast.makeText(
-                                                this@ActivityWorkshopRegistration,
-                                                "Registration successful",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                            startActivity(
-                                                Intent(
-                                                    this@ActivityWorkshopRegistration,
-                                                    ActivityWorkShopHome::class.java
-                                                )
-                                            )
-                                            finish()
-                                        }
-                                        .addOnFailureListener { e ->
-                                            Log.e("ActivityWorkshopRegistration", "Failed to set document", e)
-                                            Toast.makeText(
-                                                this@ActivityWorkshopRegistration,
-                                                "Registration unsuccessful",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                            closeAnimation()
-                                        }
+                    val modelWorkshop = ModelWorkshop(
+                        workshopName = userName,
+                        workshopEmail = userEmail,
+                        workshopAddress = userAddress,
+                        workshopPhoneNumber = userPhone
+                    )
+                    db.collection("WorkshopRegistration").add(modelWorkshop)
+                        .addOnSuccessListener { documentRef ->
+                            modelWorkshop.workshopId = documentRef.id
+                            db.collection("WorkshopRegistration").document(documentRef.id)
+                                .set(modelWorkshop)
+                                .addOnSuccessListener {
+                                    closeAnimation()
+                                    Log.d("ActivityWorkshopRegistration", "Registration successful")
+                                    Toast.makeText(
+                                        this@ActivityWorkshopRegistration,
+                                        "Registration successful",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                    val intent = Intent(
+                                        this@ActivityWorkshopRegistration,
+                                        ActivityWorkShopHome::class.java
+                                    ).apply {
+                                        putExtra("workshopId", modelWorkshop.workshopId)
+                                        putExtra("workshopName", modelWorkshop.workshopName)
+                                        putExtra("workshopEmail", modelWorkshop.workshopEmail)
+                                        putExtra("workshopAddress", modelWorkshop.workshopAddress)
+                                        putExtra("workshopPhoneNumber", modelWorkshop.workshopPhoneNumber)
+                                    }
+                                    startActivity(intent)
+                                    finish()
                                 }
                                 .addOnFailureListener { e ->
-                                    Log.e("ActivityWorkshopRegistration", "Failed to add document", e)
+                                    Log.e("ActivityWorkshopRegistration", "Failed to set document", e)
                                     Toast.makeText(
                                         this@ActivityWorkshopRegistration,
                                         "Registration unsuccessful",
@@ -125,53 +99,17 @@ class ActivityWorkshopRegistration : AppCompatActivity() {
                                     closeAnimation()
                                 }
                         }
-                    } ?: run {
-                        Toast.makeText(
-                            this@ActivityWorkshopRegistration,
-                            "Please select an image",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        closeAnimation()
-                    }
+                        .addOnFailureListener { e ->
+                            Log.e("ActivityWorkshopRegistration", "Failed to add document", e)
+                            Toast.makeText(
+                                this@ActivityWorkshopRegistration,
+                                "Registration unsuccessful",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            closeAnimation()
+                        }
                 }
             }
-        }
-    }
-
-    private fun uploadImage(imageUri: Uri, callback: (String) -> Unit) {
-        val storageRef = storage.reference.child("workshop_images/${System.currentTimeMillis()}.jpg")
-        val uploadTask = storageRef.putFile(imageUri)
-
-        uploadTask.continueWithTask { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let { throw it }
-            }
-            storageRef.downloadUrl
-        }.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val downloadUri = task.result
-                Log.d("ActivityWorkshopRegistration", "Image uploaded successfully: $downloadUri")
-                callback(downloadUri.toString())
-            } else {
-                uploadTask.addOnFailureListener { e ->
-                    Log.e("ActivityWorkshopRegistration", "Image upload failed: ${e.message}", e)
-                    closeAnimation()
-                    Toast.makeText(
-                        this@ActivityWorkshopRegistration,
-                        "Image upload failed: ${e.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-            selectedImageUri = data.data
-            Glide.with(this).load(selectedImageUri).into(binding.profileImage)
         }
     }
 
