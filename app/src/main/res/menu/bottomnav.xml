@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/navigation_spare_parts"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Spare Parts" />
+    <item
+        android:id="@+id/navigation_request"
+        android:icon="@drawable/baseline_add_circle_24"
+        android:title="Request" />
+    <item
+        android:id="@+id/navigation_workshop"
+        android:icon="@drawable/baseline_pedal_bike_24"
+        android:title="Workshop" />
+    <item
+        android:id="@+id/navigation_chats"
+        android:icon="@drawable/baseline_mark_unread_chat_alt_24"
+        android:title="Chats" />
+</menu>

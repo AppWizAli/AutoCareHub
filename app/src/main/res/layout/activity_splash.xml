@@ -9,16 +9,17 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/logo"
-        android:layout_marginTop="170dp"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"/>
      <TextView
+         android:id="@+id/textview"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_below="@id/logo"
          android:text="AutoCareHub"
       android:layout_centerHorizontal="true"
          android:layout_marginTop="20dp"
-         android:fontFamily="@font/poppinsbold"
+         android:fontFamily="monospace"
          android:textColor="@color/secondary"
          android:textSize="22sp"/>
 </RelativeLayout>

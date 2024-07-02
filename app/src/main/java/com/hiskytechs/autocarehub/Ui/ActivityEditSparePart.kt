@@ -8,8 +8,9 @@ import com.hiskytechs.autocarehub.databinding.ActivityEditSparePartBinding
 class ActivityEditSparePart : AppCompatActivity() {
     private lateinit var binding: ActivityEditSparePartBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding=ActivityEditSparePartBinding.inflate(layoutInflater)
+
         super.onCreate(savedInstanceState)
+        binding=ActivityEditSparePartBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="240dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:src="@drawable/loc" />
+        android:src="@drawable/intro3" />
 
     <TextView
         android:id="@+id/title"
@@ -19,7 +20,7 @@
         android:layout_below="@id/image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Track Your Ride"
+        android:text="Book Appointments Easily"
         android:fontFamily="@font/poppinsbold"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -32,19 +33,20 @@
         android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/poppinregular"
-        android:text="Know your driver in advance and be \nable to view current location in real time \non the map"
+        android:text="Schedule your car's service or modification \n with just a few taps."
         android:textSize="16sp"
-        android:textColor="#666" />
+        android:textColor="#1E1F22" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/get_started_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:cornerRadius="10dp"
+        android:layout_marginHorizontal="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="172dp"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="@color/black"
+        android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+        android:layout_marginBottom="70dp"
         android:text="Get Started" />
 
 </RelativeLayout>

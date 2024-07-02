@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary"
     android:layout_height="match_parent">
-
     <ImageView
         android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:src="@drawable/req" />
+        android:src="@drawable/intro1" />
 
     <TextView
         android:id="@+id/title"
@@ -19,7 +19,7 @@
         android:layout_below="@id/image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Request Ride"
+        android:text="Welcome to AutoCareHub"
         android:fontFamily="@font/poppinsbold"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -33,19 +33,21 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppinregular"
-        android:text="Request a ride get picked up by a \n nearby community driver"
+        android:text="Discovercar repair and modification \nservices at your fingertips"
         android:textSize="16sp"
         android:textColor="#666" />
 
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/description"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/nextintro1"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+    app:cornerRadius="10dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="263dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="80dp"
-        android:background="@color/white"
-        android:src="@drawable/right_arrow"/>
+        android:backgroundTint="@color/black"
+        android:layout_marginRight="20dp"
+        android:text="Next"
+        android:layout_marginBottom="20dp"
+        android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"/>
+
 </RelativeLayout>

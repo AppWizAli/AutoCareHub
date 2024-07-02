@@ -3,7 +3,108 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Ui.ActivityWorkshopRegistration">
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/backward_arrow" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/logo" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppinsbold"
+            android:layout_marginBottom="16dp"
+            android:textSize="17sp"
+          android:text="Upload Image" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="20dp"
+            android:fontFamily="@font/poppinregular"
+            android:hint="Enter UserName"
+            android:inputType="text"
+            android:background="@drawable/shapelogin"
+            android:paddingStart="9dp"
+            />
+        <EditText
+            android:id="@+id/useremail"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/title"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:fontFamily="@font/poppinregular"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/shapelogin"
+            android:paddingStart="9dp"/>
+        <EditText
+            android:id="@+id/useraddress"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/title"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:fontFamily="@font/poppinregular"
+            android:hint="Enter Address"
+            android:background="@drawable/shapelogin"
+            android:paddingStart="9dp" />
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:inputType="number"
+            android:layout_below="@id/title"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shapelogin"
+            android:fontFamily="@font/poppinregular"
+            android:hint="Enter Phone Number"
+            android:paddingStart="9dp" />
+        <Spinner
+            android:id="@+id/spinner_services"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:layout_height="45dp"
+            android:background="@drawable/shapelogin"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/Register"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/forgot_password"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="50dp"
+            android:text="Register"
+            app:cornerRadius="10dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/black"
+            android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+            android:fontFamily="monospace"/>
+
+
+
+    </LinearLayout>
 
 </ScrollView>
