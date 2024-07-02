@@ -48,7 +48,7 @@ class ActivityLoginUser : AppCompatActivity() {
                 else if (userpswrd.text.toString().isEmpty()) {
                     userpswrd.error = "Password is required"}
                     else {
-                    db.collection("User")
+                  db.collection("User")
                         .whereEqualTo("email", useremail.text.toString())
                         .whereEqualTo("password", userpswrd.text.toString())
                         .get()
@@ -57,7 +57,7 @@ class ActivityLoginUser : AppCompatActivity() {
                                 val querySnapshot = task.result
                                 if (querySnapshot != null && !querySnapshot.isEmpty) {
                                     val documentId = querySnapshot.documents[0].id
-
+mySharedPref.saveUserDocId(documentId)
                                     Toast.makeText(this@ActivityLoginUser, "Login Successful", Toast.LENGTH_SHORT).show()
                                 mySharedPref.saveuserLogin()
 

@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils
 import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.databinding.ActivitySplashBinding
+import com.hiskytechs.autocarehub.workshophome
 
 class ActivitySplash : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
@@ -28,6 +29,11 @@ class ActivitySplash : AppCompatActivity() {
             {
                 startActivity(Intent(this@ActivitySplash,MainActivity::class.java))
             }
+            else if(mySharedPref.IsworkLogedIn()==true)
+            {
+                startActivity(Intent(this@ActivitySplash,workshophome::class.java))
+            }
+
             else
             {
                 startActivity(Intent(this@ActivitySplash,ActivityUserChoice::class.java))

@@ -25,6 +25,27 @@ class MySharedPref(var context: Context) {
     {
         return sharedpreferences.getBoolean("IsUserLoggedin",false)
     }
+  fun IsworkLogedIn():Boolean
+    {
+        return sharedpreferences.getBoolean("IsWorkshopLoggedin",false)
+    }
+
+
+
+
+
+
+    fun saveUserDocId( userdocId:String)
+    {
+        editor.putString("UserDocId",userdocId)
+        editor.apply()
+    }
+
+    fun getUserDocId():String
+    {
+       return sharedpreferences.getString("UserDocId","Value Not Found")!!
+    }
+
 
 
 }
