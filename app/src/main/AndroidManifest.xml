@@ -26,12 +26,7 @@
             android:exported="false" />
         <activity
             android:name=".ActivityWorkshopProfile"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false" >
         </activity>
         <activity
             android:name=".workshophome"
@@ -78,12 +73,8 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivityWorkshopRegistration"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Ui.ActivityEditSparePart"
@@ -141,7 +132,13 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivitySplash"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Ui.MainActivity"
             android:exported="true" />
