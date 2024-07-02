@@ -51,7 +51,8 @@ class FragmentHome : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_home, container, false)
         viewPager = rootView.findViewById(R.id.viewPager)
 
-        adapter = ImageViewPagerAdapter(requireContext(), imageList)
+        adapter =
+           ImageViewPagerAdapter(requireContext(), imageList)
         viewPager.adapter = adapter
         activity?.window?.let { window ->
             window.statusBarColor = resources.getColor(R.color.primary2, null)
@@ -70,7 +71,7 @@ class FragmentHome : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        newsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+     //   newsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         fetchNewsFromFirestore()
     }
 

@@ -9,10 +9,12 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.databinding.ActivityLoginWorkshopBinding
 
 class ActivityLoginWorkshop : AppCompatActivity() {
     private lateinit var binding: ActivityLoginWorkshopBinding
+    private lateinit var mySharedPref: MySharedPref
     private lateinit var dialog: Dialog
     private var db= Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +22,11 @@ class ActivityLoginWorkshop : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+
+        mySharedPref=MySharedPref(this@ActivityLoginWorkshop)
+
+
         binding.apply {
                 backArrow.setOnClickListener(){
                     startActivity(Intent(this@ActivityLoginWorkshop,ActivityUserChoice::class.java))
@@ -46,14 +53,9 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                                 if (querySnapshot != null && !querySnapshot.isEmpty) {
                                     val documentId = querySnapshot.documents[0].id
 
-                                    val sharedPreferences = getSharedPreferences("preference", Context.MODE_PRIVATE)
-                                    val editor = sharedPreferences.edit()
-                                    editor.putBoolean("IsLog",true)
-                                    editor.apply()
-                                    editor.putString("workshopOwnerID", documentId)
-                                    editor.apply()
 
                                     Toast.makeText(this@ActivityLoginWorkshop, "Login Successful", Toast.LENGTH_SHORT).show()
+                                    mySharedPref.saveworkshopLogin()
                                     startActivity(Intent(this@ActivityLoginWorkshop, ActivityWorkshopRegistration::class.java))
                                     finish()
                                 } else {
