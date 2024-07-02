@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="workshop_services_array">
+        <item>General Repair</item>
+        <item>Oil Change</item>
+        <item>Tire Service</item>
+        <item>Battery Replacement</item>
+    </string-array>
+</resources>

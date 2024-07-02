@@ -1,5 +1,6 @@
 package com.hiskytechs.autocarehub.Ui
 
+
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -53,7 +54,7 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                                     editor.apply()
 
                                     Toast.makeText(this@ActivityLoginWorkshop, "Login Successful", Toast.LENGTH_SHORT).show()
-                                    startActivity(Intent(this@ActivityLoginWorkshop, ActivityWorkShopHome::class.java))
+                                    startActivity(Intent(this@ActivityLoginWorkshop, ActivityWorkshopRegistration::class.java))
                                     finish()
                                 } else {
                                     Toast.makeText(this@ActivityLoginWorkshop, "Invalid email or password", Toast.LENGTH_SHORT).show()

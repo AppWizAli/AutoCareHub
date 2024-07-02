@@ -16,11 +16,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.adapters.AdapterNews
-import com.hiskytechs.autocarehub.adapters.ImageViewPagerAdapter
+import com.hiskytechs.autocarehub.adapters. ImageViewPagerAdapter
 import com.hiskytechs.autocarehub.models.ModelNews
 
 class FragmentHome : Fragment() {
-
     private lateinit var viewPager: ViewPager
     private lateinit var adapter: ImageViewPagerAdapter
     private lateinit var newsRecyclerView: RecyclerView
@@ -51,11 +50,9 @@ class FragmentHome : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_home, container, false)
         viewPager = rootView.findViewById(R.id.viewPager)
-        newsRecyclerView = rootView.findViewById(R.id.news_recycler_view)
 
         adapter = ImageViewPagerAdapter(requireContext(), imageList)
         viewPager.adapter = adapter
-        // Set status bar color and text color
         activity?.window?.let { window ->
             window.statusBarColor = resources.getColor(R.color.primary2, null)
             val controller = ViewCompat.getWindowInsetsController(window.decorView)
