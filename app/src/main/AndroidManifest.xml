@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,24 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoCareHub"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+
+        <activity
+            android:name=".ActivityWorkshopEditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityWorkshopApproveReq"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityWorkshopPendingReq"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityWorkshopProfile"
+            android:exported="false" />
+        <activity
+            android:name=".workshophome"
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".Ui.ActivityLoginAs"
             android:exported="false" />
@@ -53,11 +72,16 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivityWorkshopRegistration"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Ui.ActivityEditSparePart"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Ui.ActivitySparePart"
             android:exported="false" />
@@ -78,8 +102,7 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivityLoginWorkshop"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Ui.ActivityLoginSupplier"
             android:exported="false" />
@@ -97,9 +120,7 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivityUserSignUp"
-            android:exported="false" >
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Ui.ActivityUserChoice"
             android:exported="false" />
@@ -114,19 +135,10 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivitySplash"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".Ui.MainActivity"
-            android:exported="true">
-
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
