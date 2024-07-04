@@ -1,11 +1,8 @@
-package com.hiskytechs.autocarehub
+package com.hiskytechs.autocarehub.Ui
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.hiskytechs.autocarehub.databinding.ActivityWorkshophomeBinding
 
 class workshophome : AppCompatActivity() {
@@ -16,13 +13,13 @@ class workshophome : AppCompatActivity() {
         setContentView(binding.root)
         binding.apply {
             profileImage.setOnClickListener(){
-                startActivity(Intent(this@workshophome,ActivityWorkshopProfile::class.java))
+                startActivity(Intent(this@workshophome, ActivityWorkshopProfile::class.java))
             }
             ar.setOnClickListener(){
-                startActivity(Intent(this@workshophome,ActivityWorkshopApproveReq::class.java))
+                startActivity(Intent(this@workshophome, ActivityWorkshopApproveReq::class.java))
             }
             pr.setOnClickListener(){
-                startActivity(Intent(this@workshophome,ActivityWorkshopPendingReq::class.java))
+                startActivity(Intent(this@workshophome, ActivityWorkshopPendingReq::class.java))
             }
         }
         }

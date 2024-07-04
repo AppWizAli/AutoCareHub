@@ -24,17 +24,7 @@ import com.hiskytechs.autocarehub.models.ModelNews
 
 class FragmentHome : Fragment() {
     var db=Firebase.firestore
-
-
-
-
     private lateinit var mySharedPref: MySharedPref
-
-
-
-
-
-
     private lateinit var viewPager: ViewPager
     private lateinit var adapter: ImageViewPagerAdapter
     private lateinit var newsRecyclerView: RecyclerView
@@ -134,8 +124,8 @@ class FragmentHome : Fragment() {
                     val news = document.toObject(ModelNews::class.java)
                     newsList.add(news)
                 }
-                newsAdapter = AdapterNews(requireContext(), newsList)
-                newsRecyclerView.adapter = newsAdapter
+             //   newsAdapter = AdapterNews(requireContext(), newsList)
+           //     newsRecyclerView.adapter = newsAdapter
             }
             .addOnFailureListener { exception ->
                 // Handle error

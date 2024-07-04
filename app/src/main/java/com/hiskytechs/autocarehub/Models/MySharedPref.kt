@@ -16,7 +16,7 @@ class MySharedPref(var context: Context) {
         editor.apply()
     }
 
-    fun saveworkshopLogin(id: String)
+    fun saveworkshopLogin()
     {
         editor.putBoolean("IsWorkshopLoggedin",true)
         editor.apply()
@@ -40,10 +40,20 @@ class MySharedPref(var context: Context) {
         editor.putString("UserDocId",userdocId)
         editor.apply()
     }
+    fun saveWorkShopDocId( userdocId:String)
+    {
+        editor.putString("workShopDocId",userdocId)
+        editor.apply()
+    }
 
     fun getUserDocId():String
     {
        return sharedpreferences.getString("UserDocId","Value Not Found")!!
+    }
+
+    fun getWorkShopDocId():String
+    {
+       return sharedpreferences.getString("workShopDocId","Value Not Found")!!
     }
 
 

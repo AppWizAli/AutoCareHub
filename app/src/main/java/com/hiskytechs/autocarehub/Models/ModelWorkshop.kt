@@ -2,7 +2,7 @@ package com.hiskytechs.autocarehub.Models
 
 class ModelWorkshop(
     var workshopId: String = "",
-    var isRegister: Boolean = false,
+
     var workshopName: String = "",
     var workshopImage: String="",
     var workshopAddress: String = "",

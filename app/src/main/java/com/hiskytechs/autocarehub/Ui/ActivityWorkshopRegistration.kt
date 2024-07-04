@@ -9,19 +9,21 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.carrepairapp.model.ModelUser
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
-import com.hiskytechs.autocarehub.ActivityWorkshopProfile
 import com.hiskytechs.autocarehub.Models.ModelWorkshop
+import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.databinding.ActivityWorkshopRegistrationBinding
-import com.hiskytechs.autocarehub.workshophome
 import java.util.regex.Pattern
 
 class ActivityWorkshopRegistration : AppCompatActivity() {
     private lateinit var binding: ActivityWorkshopRegistrationBinding
     private val db = Firebase.firestore
     private lateinit var dialog: Dialog
+    private lateinit var mySharedPref: MySharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,8 @@ class ActivityWorkshopRegistration : AppCompatActivity() {
                     backArrow.setOnClickListener {
                         finish()
                     }
+
+                    mySharedPref= MySharedPref(this@ActivityWorkshopRegistration)
 
                     Register.setOnClickListener {
                         showAnimation()
@@ -65,7 +69,7 @@ class ActivityWorkshopRegistration : AppCompatActivity() {
                             db.collection("WorkshopRegistration").add(modelWorkshop)
                                 .addOnSuccessListener { documentRef ->
                                     modelWorkshop.workshopId = documentRef.id
-                                    modelWorkshop.isRegister=true
+
                                     db.collection("WorkshopRegistration").document(documentRef.id)
                                         .set(modelWorkshop)
                                         .addOnSuccessListener {
@@ -76,7 +80,15 @@ class ActivityWorkshopRegistration : AppCompatActivity() {
                                                 "Registration successful",
                                                 Toast.LENGTH_SHORT
                                             ).show()
+                                            db.collection("WorkshopUser").document(mySharedPref.getWorkShopDocId()).get()
+                                                .addOnSuccessListener {
+                                                        document->
+                                                    var modelWorkShop=document.toObject(ModelUser::class.java)!!
 
+
+                                                    modelWorkShop.isRegister=true
+                                                    db.collection("WorkshopUser").document(mySharedPref.getWorkShopDocId()).set(modelWorkShop)
+                                                }
                                             val intent = Intent(this@ActivityWorkshopRegistration, ActivityWorkshopProfile::class.java
                                             ).apply {
                                                 putExtra("workshopId", modelWorkshop.workshopId)

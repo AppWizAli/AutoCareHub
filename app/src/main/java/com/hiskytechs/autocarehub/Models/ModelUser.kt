@@ -7,8 +7,10 @@ data class ModelUser(
     var workshopOwnerID: String="",
     var userName: String = "",
     var email: String = "",
+    var isRegister: Boolean = false,
     var password: String = "",
     var cpassword: String = "",
+
     var phoneNumber: String = "",
     var address: String = "",
     var profilePictureUrl: String = "",

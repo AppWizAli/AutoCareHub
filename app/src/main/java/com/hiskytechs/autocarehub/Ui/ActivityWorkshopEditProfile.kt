@@ -1,10 +1,9 @@
-package com.hiskytechs.autocarehub
+package com.hiskytechs.autocarehub.Ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.hiskytechs.autocarehub.R
 
 class ActivityWorkshopEditProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

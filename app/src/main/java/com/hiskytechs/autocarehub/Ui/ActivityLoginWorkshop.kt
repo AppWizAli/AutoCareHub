@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.carrepairapp.model.ModelUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObject
 import com.hiskytechs.autocarehub.Models.ModelWorkshop
 import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.databinding.ActivityLoginWorkshopBinding
+import com.hiskytechs.autocarehub.databinding.ActivityWorkshophomeBinding
 
 class ActivityLoginWorkshop : AppCompatActivity() {
 
@@ -61,17 +64,18 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                         if (task.isSuccessful) {
                             val querySnapshot = task.result
                             if (querySnapshot != null && !querySnapshot.isEmpty) {
-                                val document = querySnapshot.documents[0]
-                                val isRegister = document.getBoolean("isRegister") ?: false
+                                val document = querySnapshot.documents[0]!!
+                                val isRegister = document.toObject(ModelUser::class.java)?.isRegister
 
                                 Toast.makeText(
                                     this@ActivityLoginWorkshop,
                                     "Login Successful",
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                mySharedPref.saveworkshopLogin(document.id)
+                                mySharedPref.saveworkshopLogin()
+                                mySharedPref.saveWorkShopDocId(document.id.toString())
 
-                                if (isRegister) {
+                                if (isRegister == true) {
                                     Log.d("Login", "User is registered, navigating to Home")
                                     startActivity(
                                         Intent(
