@@ -28,7 +28,7 @@ class ActivityLoginWorkshop : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         mySharedPref = MySharedPref(this)
 
-        checkLoginStatus()
+        // checkLoginStatus()
 
         binding.apply {
 
@@ -65,7 +65,8 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                             val querySnapshot = task.result
                             if (querySnapshot != null && !querySnapshot.isEmpty) {
                                 val document = querySnapshot.documents[0]!!
-                                val isRegister = document.toObject(ModelUser::class.java)?.isRegister
+                                val isRegister =
+                                    document.toObject(ModelUser::class.java)?.isRegister
 
                                 Toast.makeText(
                                     this@ActivityLoginWorkshop,
@@ -74,7 +75,12 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                                 ).show()
                                 mySharedPref.saveworkshopLogin()
                                 mySharedPref.saveWorkShopDocId(document.id.toString())
-
+                                Toast.makeText(
+                                    this@ActivityLoginWorkshop,
+                                    isRegister.toString(),
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
                                 if (isRegister == true) {
                                     Log.d("Login", "User is registered, navigating to Home")
                                     startActivity(
@@ -113,54 +119,55 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                     }
             }
 
-            checkLoginStatus()
+
         }
     }
-            private fun checkLoginStatus() {
-                val userEmail = binding.useremail.text.toString()
-                val userPassword = binding.userpswrd.text.toString()
 
-                db.collection("WorkshopUser")
-                    .whereEqualTo("userName", userEmail)
-                    .whereEqualTo("password", userPassword)
-                    .get()
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            val querySnapshot = task.result
-                            if (querySnapshot != null && !querySnapshot.isEmpty) {
-                                val document = querySnapshot.documents[0]
-                                val isRegister = document.getBoolean("isRegister") ?: false
+    private fun checkLoginStatus() {
+        val userEmail = binding.useremail.text.toString()
+        val userPassword = binding.userpswrd.text.toString()
 
-                                if (isRegister) {
-                                    Log.d("Login", "User is registered, navigating to Home")
-                                    startActivity(Intent(this, ActivityWorkShopHome::class.java))
-                                } else {
-                                    Log.d(
-                                        "Login",
-                                        "User is not registered, navigating to Registration"
-                                    )
-                                    startActivity(
-                                        Intent(
-                                            this,
-                                            ActivityWorkshopRegistration::class.java
-                                        )
-                                    )
-                                }
-                                finish()
-                            }
-                            else {
-                                Toast.makeText(
-                                    this,
-                                    "Invalid email or password",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+        db.collection("WorkshopUser")
+            .whereEqualTo("userName", userEmail)
+            .whereEqualTo("password", userPassword)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val querySnapshot = task.result
+                    if (querySnapshot != null && !querySnapshot.isEmpty) {
+                        val document = querySnapshot.documents[0]
+                        val isRegister = document.getBoolean("isRegister") ?: false
+
+                        if (isRegister) {
+                            Log.d("Login", "User is registered, navigating to Home")
+                            startActivity(Intent(this, ActivityWorkShopHome::class.java))
                         } else {
-                            Toast.makeText(
-                                this,
-                                "Login Unsuccessful",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Log.d(
+                                "Login",
+                                "User is not registered, navigating to Registration"
+                            )
+                            startActivity(
+                                Intent(
+                                    this,
+                                    ActivityWorkshopRegistration::class.java
+                                )
+                            )
                         }
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Invalid email or password",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-            }}
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Login Unsuccessful",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
+}
