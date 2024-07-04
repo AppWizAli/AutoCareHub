@@ -65,6 +65,7 @@ class ActivityWorkshopRegistration : AppCompatActivity() {
                             db.collection("WorkshopRegistration").add(modelWorkshop)
                                 .addOnSuccessListener { documentRef ->
                                     modelWorkshop.workshopId = documentRef.id
+                                    modelWorkshop.isRegister=true
                                     db.collection("WorkshopRegistration").document(documentRef.id)
                                         .set(modelWorkshop)
                                         .addOnSuccessListener {
@@ -76,9 +77,7 @@ class ActivityWorkshopRegistration : AppCompatActivity() {
                                                 Toast.LENGTH_SHORT
                                             ).show()
 
-                                            val intent = Intent(
-                                                this@ActivityWorkshopRegistration,
-                                                ActivityWorkshopProfile::class.java
+                                            val intent = Intent(this@ActivityWorkshopRegistration, ActivityWorkshopProfile::class.java
                                             ).apply {
                                                 putExtra("workshopId", modelWorkshop.workshopId)
                                                 putExtra("workshopName", modelWorkshop.workshopName)

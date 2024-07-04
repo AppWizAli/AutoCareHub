@@ -16,7 +16,7 @@ class MySharedPref(var context: Context) {
         editor.apply()
     }
 
-    fun saveworkshopLogin()
+    fun saveworkshopLogin(id: String)
     {
         editor.putBoolean("IsWorkshopLoggedin",true)
         editor.apply()
@@ -29,10 +29,10 @@ class MySharedPref(var context: Context) {
     {
         return sharedpreferences.getBoolean("IsWorkshopLoggedin",false)
     }
-
-
-
-
+    fun clearworkshopLogin() {
+        editor.putBoolean("IsWorkshopLoggedin", false)
+        editor.apply()
+    }
 
 
     fun saveUserDocId( userdocId:String)
