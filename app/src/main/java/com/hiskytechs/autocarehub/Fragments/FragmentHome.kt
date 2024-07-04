@@ -67,7 +67,7 @@ class FragmentHome : Fragment() {
         viewPager = rootView.findViewById(R.id.viewPager)
 
         adapter =
-           ImageViewPagerAdapter(requireContext(), imageList)
+            com.hiskytechs.autocarehub.adapters.ImageViewPagerAdapter(requireContext(), imageList)
         viewPager.adapter = adapter
         activity?.window?.let { window ->
             window.statusBarColor = resources.getColor(R.color.primary2, null)
