@@ -4,6 +4,7 @@ package com.hiskytechs.autocarehub.Ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hiskytechs.autocarehub.Models.ModelWorkshop
@@ -47,83 +48,115 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                     )
                 )
             }
+
             loginButton.setOnClickListener {
-                if (useremail.text.toString().isEmpty()) {
-                    useremail.error = "Email is required"
-                } else if (userpswrd.text.toString().isEmpty()) {
-                    userpswrd.error = "Password is required"
-                } else {
-                    db.collection("WorkshopUser")
-                        .whereEqualTo("userName", useremail.text.toString())
-                        .whereEqualTo("password", userpswrd.text.toString())
-                        .get()
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                val querySnapshot = task.result
-                                if (querySnapshot != null && !querySnapshot.isEmpty) {
-                                    val document = querySnapshot.documents[0]!!
-                                  var isRegister=document.toObject(ModelWorkshop::class.java)?.isRegister
+                val userEmail = useremail.text.toString()
+                val userPassword = userpswrd.text.toString()
 
-                                    Toast.makeText(
-                                        this@ActivityLoginWorkshop,
-                                        "Login Successful",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    mySharedPref.saveworkshopLogin(document.id)
+                db.collection("WorkshopUser")
+                    .whereEqualTo("userName", userEmail)
+                    .whereEqualTo("password", userPassword)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val querySnapshot = task.result
+                            if (querySnapshot != null && !querySnapshot.isEmpty) {
+                                val document = querySnapshot.documents[0]
+                                val isRegister = document.getBoolean("isRegister") ?: false
 
-                                    if (isRegister == true) {
-                                        startActivity(
-                                            Intent(
-                                                this@ActivityLoginWorkshop,
-                                                ActivityWorkShopHome::class.java
-                                            )
+                                Toast.makeText(
+                                    this@ActivityLoginWorkshop,
+                                    "Login Successful",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                mySharedPref.saveworkshopLogin(document.id)
+
+                                if (isRegister) {
+                                    Log.d("Login", "User is registered, navigating to Home")
+                                    startActivity(
+                                        Intent(
+                                            this@ActivityLoginWorkshop,
+                                            ActivityWorkShopHome::class.java
                                         )
-                                    } else {
-                                        startActivity(
-                                            Intent(
-                                                this@ActivityLoginWorkshop,
-                                                ActivityWorkshopRegistration::class.java
-                                            )
-                                        )
-                                    }
-                                    finish()
+                                    )
                                 } else {
-                                    Toast.makeText(
-                                        this@ActivityLoginWorkshop,
-                                        "Invalid email or password",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    Log.d(
+                                        "Login",
+                                        "User is not registered, navigating to Registration"
+                                    )
+                                    startActivity(
+                                        Intent(
+                                            this@ActivityLoginWorkshop,
+                                            ActivityWorkshopRegistration::class.java
+                                        )
+                                    )
                                 }
+                                finish()
                             } else {
                                 Toast.makeText(
                                     this@ActivityLoginWorkshop,
-                                    "Login Unsuccessful",
+                                    "Invalid email or password",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
+                        } else {
+                            Toast.makeText(
+                                this@ActivityLoginWorkshop,
+                                "Login Unsuccessful",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                }
-            }
-        }
-    }
-    private fun checkLoginStatus() {
-        val userId = mySharedPref.getUserDocId()
-        if (userId != null) {
-            db.collection("WorkshopUser").document(userId).get().addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    val isRegister = document.getBoolean("isRegister") ?: false
-                    if (isRegister) {
-                        startActivity(Intent(this, ActivityWorkShopHome::class.java))
-                    } else {
-                        startActivity(Intent(this, ActivityWorkshopRegistration::class.java))
                     }
-                    finish()
-                }
             }
+
+            checkLoginStatus()
         }
     }
+            private fun checkLoginStatus() {
+                val userEmail = binding.useremail.text.toString()
+                val userPassword = binding.userpswrd.text.toString()
 
+                db.collection("WorkshopUser")
+                    .whereEqualTo("userName", userEmail)
+                    .whereEqualTo("password", userPassword)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val querySnapshot = task.result
+                            if (querySnapshot != null && !querySnapshot.isEmpty) {
+                                val document = querySnapshot.documents[0]
+                                val isRegister = document.getBoolean("isRegister") ?: false
 
-}
-
-
+                                if (isRegister) {
+                                    Log.d("Login", "User is registered, navigating to Home")
+                                    startActivity(Intent(this, ActivityWorkShopHome::class.java))
+                                } else {
+                                    Log.d(
+                                        "Login",
+                                        "User is not registered, navigating to Registration"
+                                    )
+                                    startActivity(
+                                        Intent(
+                                            this,
+                                            ActivityWorkshopRegistration::class.java
+                                        )
+                                    )
+                                }
+                                finish()
+                            }
+                            else {
+                                Toast.makeText(
+                                    this,
+                                    "Invalid email or password",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "Login Unsuccessful",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+            }}
