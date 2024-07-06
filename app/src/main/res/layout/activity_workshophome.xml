@@ -112,6 +112,7 @@
          android:layout_margin="20dp"
          app:layout_column="0"
          app:layout_row="0"
+         android:id="@+id/addsp"
          app:cardCornerRadius="15dp"
          >
          <LinearLayout
@@ -136,6 +137,7 @@
             android:layout_height="150dp"
             android:layout_margin="20dp"
          app:layout_column="1"
+           android:id="@+id/see"
          app:layout_row="0"
          app:cardCornerRadius="15dp"
          >
@@ -153,7 +155,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinsbold"
-                    android:text="Add Spare parts"/>
+                    android:text="See All Spare parts"/>
             </LinearLayout>
      </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView

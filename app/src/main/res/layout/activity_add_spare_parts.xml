@@ -2,12 +2,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"  android:background="@color/primary"
-    android:layout_height="match_parent">
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    tools:context=".ActivityAddSpareParts">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:orientation="vertical"
         android:padding="16dp">
         <ImageView
@@ -22,7 +24,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="16dp"
             android:src="@drawable/logo" />
         <TextView
@@ -32,45 +34,56 @@
             android:fontFamily="@font/poppinsbold"
             android:layout_marginBottom="16dp"
             android:textSize="17sp"
-          android:text="Upload Image" />
+            android:text="Part Image" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/prtname"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginHorizontal="20dp"
             android:fontFamily="@font/poppinregular"
-            android:hint="Enter UserName"
+            android:hint="Enter PartName"
             android:inputType="text"
             android:background="@drawable/shapelogin"
             android:paddingStart="9dp"
             />
         <EditText
-            android:id="@+id/useremail"
+            android:id="@+id/prtprize"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_below="@id/title"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
             android:fontFamily="@font/poppinregular"
-            android:hint="Enter Email"
+            android:hint="Enter PartPrize"
             android:inputType="textEmailAddress"
             android:background="@drawable/shapelogin"
             android:paddingStart="9dp"/>
         <EditText
-            android:id="@+id/useraddress"
+            android:id="@+id/prtbrand"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_below="@id/title"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
             android:fontFamily="@font/poppinregular"
-            android:hint="Enter Address"
+            android:hint="Enter PartBrand"
             android:background="@drawable/shapelogin"
             android:paddingStart="9dp" />
 
         <EditText
-            android:id="@+id/phone"
+            android:id="@+id/prttype"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/title"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shapelogin"
+            android:fontFamily="@font/poppinregular"
+            android:hint="Enter PartType"
+            android:paddingStart="9dp" />
+        <EditText
+            android:id="@+id/prtavailability"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:inputType="number"
@@ -79,24 +92,27 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/shapelogin"
             android:fontFamily="@font/poppinregular"
-            android:hint="Enter Phone Number"
+            android:hint="Enter PartAvailableQuantity"
             android:paddingStart="9dp" />
-        <Spinner
-            android:id="@+id/spinner_services"
+        <EditText
+            android:id="@+id/des"
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="20dp"
             android:layout_height="45dp"
-            android:background="@drawable/shapelogin"
+            android:layout_below="@id/title"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="16dp"/>
+            android:background="@drawable/shapelogin"
+            android:fontFamily="@font/poppinregular"
+            android:hint="Enter PartDescription"
+            android:paddingStart="9dp" />
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/Register"
+            android:id="@+id/add"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_below="@id/forgot_password"
             android:layout_marginTop="30dp"
             android:layout_marginHorizontal="50dp"
-            android:text="Register"
+            android:text="Add"
             app:cornerRadius="10dp"
             android:textColor="@color/white"
             android:backgroundTint="@color/black"
@@ -106,5 +122,4 @@
 
 
     </LinearLayout>
-
 </ScrollView>

@@ -50,6 +50,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore:25.0.0")
     implementation("androidx.activity:activity:1.9.0")
     implementation("com.google.firebase:firebase-storage-ktx:21.0.0")
+    implementation("androidx.media3:media3-common:1.3.1")
     //implementation("com.google.firebase:firebase-ml-vision:24.1.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")

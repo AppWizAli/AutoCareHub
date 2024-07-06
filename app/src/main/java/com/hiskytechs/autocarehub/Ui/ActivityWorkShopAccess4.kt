@@ -9,8 +9,9 @@ import com.hiskytechs.autocarehub.databinding.ActivityWorkShopAccess4Binding
 class ActivityWorkShopAccess4 : AppCompatActivity() {
     private lateinit var binding: ActivityWorkShopAccess4Binding
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding= ActivityWorkShopAccess4Binding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        binding= ActivityWorkShopAccess4Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 }
