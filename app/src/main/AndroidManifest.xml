@@ -15,6 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoCareHub"
         tools:targetApi="31">
+        <activity
+            android:name=".Ui.ActivitySeeAllSpareParts"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.ActivityAddSparePart1"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityModifyCar"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/MapApiKey" />
 
         <activity
             android:name=".Ui.ActivityWorkshopEditProfile"
@@ -27,10 +40,10 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivityWorkshopProfile"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".Ui.workshophome"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".Ui.ActivityLoginAs"
             android:exported="false" />
@@ -44,10 +57,10 @@
             android:name=".Ui.ActivitySparePartRequest3"
             android:exported="false" />
         <activity
-            android:name=".Ui.ActivitySparePartRequest2"
+            android:name=".Ui.ActivityAddSparePart"
             android:exported="false" />
         <activity
-            android:name=".Ui.ActivitySparePartAcess1"
+            android:name=".Ui.ActivityEmergencyRequest"
             android:exported="false" />
         <activity
             android:name=".Ui.ActivityWorkShopAccess5"
@@ -72,12 +85,12 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivityWorkshopRegistration"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".Ui.ActivityEditSparePart"
             android:exported="false" />
         <activity
-            android:name=".Ui.ActivitySparePart"
+            android:name=".Ui.ActivitySeeAllAparePart"
             android:exported="false" />
         <activity
             android:name=".Ui.ActivitySupplierInquiryDetails"
@@ -96,7 +109,7 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivityLoginWorkshop"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Ui.ActivityLoginSupplier"
             android:exported="false" />
@@ -138,7 +151,9 @@
         </activity>
         <activity
             android:name=".Ui.MainActivity"
-            android:exported="false" />
+            android:exported="true" >
+
+        </activity>
     </application>
 
 </manifest>

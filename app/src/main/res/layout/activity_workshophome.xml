@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,6 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".Ui.workshophome">
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
+          <RelativeLayout
         android:id="@+id/r1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -14,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:padding="10dp">
 
-        <ImageView
+      <!--  <ImageView
             android:id="@+id/icon_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,15 +37,65 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo" />-->
     </RelativeLayout>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/lay1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="13dp"
+        android:layout_below="@id/r1"
+        android:layout_margin="5dp">
+        <LinearLayout
 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/profil"
+                android:src="@drawable/img_1"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome,"
+
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tvUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0073FF"
+                    android:layout_marginStart="7dp"
+                    android:text=" [User Name]"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:id="@+id/cv"
-        android:layout_below="@id/r1"
-        android:layout_height="250dp">
+        android:layout_margin="5dp"
+        app:cardCornerRadius="12dp"
+        android:layout_below="@id/lay1"
+        android:layout_height="150dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,17 +115,17 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:textSize="18sp"
-            android:id="@+id/pr"
+
             android:textColor="#D51313"
             android:fontFamily="@font/poppinsbold"
-            android:text="Pending Request"/>
+            android:text="Pending Request:-"/>
                 <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:textSize="18sp"
-                    android:fontFamily="@font/poppinsbold"
-            android:text="txt"/>
+                    android:fontFamily="monospace"
+            android:text="100"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,18 +135,18 @@
             android:layout_width="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:textSize="18sp"
-            android:id="@+id/ar"
+
             android:fontFamily="@font/poppinsbold"
             android:layout_height="wrap_content"
             android:textColor="#1E3BD3"
-            android:text="Approved Request"/>
+            android:text="Approved Request:-"/>
                 <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:textSize="18sp"
-                    android:fontFamily="@font/poppinsbold"
-            android:text="txt"/>
+                    android:fontFamily="monospace"
+            android:text="100"/>
             </LinearLayout>
         </LinearLayout>
         </LinearLayout>
@@ -103,10 +157,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/cv"
         app:columnCount="2"
-        app:rowCount="2"
+        app:rowCount="3"
         >
 
      <androidx.cardview.widget.CardView
+         android:id="@+id/add"
          android:layout_width="150dp"
          android:layout_height="150dp"
          android:layout_margin="20dp"
@@ -132,6 +187,7 @@
          </LinearLayout>
      </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:id="@+id/seeAll"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="20dp"
@@ -153,12 +209,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinsbold"
-                    android:text="Add Spare parts"/>
+                    android:text="See All Spare parts"/>
             </LinearLayout>
      </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:id="@+id/pr"
             android:layout_margin="20dp"
          app:layout_column="0"
          app:layout_row="1"
@@ -178,7 +235,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinsbold"
-                    android:text="Add Spare parts"/>
+                    android:text="Pending Requests"/>
             </LinearLayout>
      </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -186,6 +243,7 @@
             android:layout_height="150dp"
             android:layout_margin="20dp"
          app:layout_column="1"
+            android:id="@+id/ar"
          app:layout_row="1"
          app:cardCornerRadius="15dp"
          >
@@ -203,11 +261,64 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinsbold"
-                    android:text="Add Spare parts"/>
+                    android:text="Approved Requests"/>
+            </LinearLayout>
+     </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+android:id="@+id/AddOffers"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="20dp"
+         app:layout_column="1"
+         app:layout_row="2"
+         app:cardCornerRadius="15dp"
+         >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/logo"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsbold"
+                    android:text="Add Offers"/>
+            </LinearLayout>
+     </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:id="@+id/addNews"
+            android:layout_height="150dp"
+            android:layout_margin="20dp"
+         app:layout_column="0"
+         app:layout_row="2"
+         app:cardCornerRadius="15dp"
+         >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/logo"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsbold"
+                    android:text="Add News"/>
             </LinearLayout>
      </androidx.cardview.widget.CardView>
 
     </androidx.gridlayout.widget.GridLayout>
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

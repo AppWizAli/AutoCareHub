@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
+<!--    <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/baseline_home_24"
-        android:title="Home" />
-    <item
+        android:title="Home" />-->
+   <!-- <item
         android:id="@+id/navigation_spare_parts"
         android:icon="@drawable/baseline_settings_24"
         android:title="Spare Parts" />
@@ -19,5 +19,5 @@
     <item
         android:id="@+id/navigation_chats"
         android:icon="@drawable/baseline_mark_unread_chat_alt_24"
-        android:title="Chats" />
+        android:title="Chats" />-->
 </menu>

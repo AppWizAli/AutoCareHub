@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    android:padding="16dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/backward_arrow"/>
+
+    <TextView
+        android:id="@+id/welcome_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/back_arrow"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:fontFamily="monospace"
+        android:textStyle="bold"
+        android:text="Add Spare Part"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <EditText
+        android:id="@+id/part_name"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/welcome_message"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/shapelogin"
+        android:fontFamily="@font/poppinregular"
+        android:hint="Part Name" />
+
+    <EditText
+        android:id="@+id/part_description"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/part_name"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/shapelogin"
+        android:fontFamily="@font/poppinregular"
+        android:hint="Part Description" />
+
+    <EditText
+        android:id="@+id/part_price"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/part_description"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:paddingStart="10dp"
+        android:inputType="numberDecimal"
+        android:background="@drawable/shapelogin"
+        android:fontFamily="@font/poppinregular"
+        android:hint="Part Price" />
+
+    <EditText
+        android:id="@+id/part_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/part_price"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:paddingStart="10dp"
+        android:inputType="number"
+        android:background="@drawable/shapelogin"
+        android:fontFamily="@font/poppinregular"
+        android:hint="Available Quantity" />
+
+    <EditText
+        android:id="@+id/part_brand"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/part_quantity"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/shapelogin"
+        android:fontFamily="@font/poppinregular"
+        android:hint="Part Brand" />
+
+    <EditText
+        android:id="@+id/part_type"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/part_brand"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/shapelogin"
+        android:fontFamily="@font/poppinregular"
+        android:hint="Part Type" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choose_image_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/part_type"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/black"
+        app:cornerRadius="12dp"
+        android:layout_marginHorizontal="20dp"
+        android:text="Choose Image" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/part_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/choose_image_button"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_marginHorizontal="20dp"
+        android:scaleType="centerCrop"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/add_spare_part_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/part_image_view"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="50dp"
+        android:text="Add Spare Part"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:fontFamily="monospace"
+        app:cornerRadius="10dp"/>
+
+</RelativeLayout>
+</ScrollView>

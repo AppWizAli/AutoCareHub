@@ -11,7 +11,6 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.databinding.ActivityMainBinding
-import com.hiskytechs.autocarehub.databinding.ActivitySparePartRequest2Binding
 import com.hiskytechs.autocarehub.databinding.ActivityUserSignUpBinding
 import java.util.regex.Pattern
 

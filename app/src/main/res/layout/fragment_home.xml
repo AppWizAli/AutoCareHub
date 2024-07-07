@@ -9,28 +9,76 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <RelativeLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/lay1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="13dp"
+                android:layout_margin="5dp">
+                <LinearLayout
 
-          <androidx.cardview.widget.CardView
-              android:id="@+id/cv1"
-              android:layout_width="match_parent"
-              app:cardCornerRadius="12dp"
-              android:layout_margin="5dp"
-              android:backgroundTint="#F3F3F3"
-              android:layout_height="200dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="8dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/img_1"
+                        android:layout_marginEnd="16dp"
+                        android:background="?attr/selectableItemBackgroundBorderless" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Welcome,"
+                            android:textStyle="bold"
+                            android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/tvUsername"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="7dp"
+                            android:text="[User Name]"
+                            android:textStyle="bold"
+                            android:textSize="18sp" />
 
 
-              <androidx.viewpager.widget.ViewPager
-                  android:id="@+id/viewPager"
-                  android:layout_width="match_parent"
-                  android:layout_margin="1dp"
-                  android:layout_height="match_parent"/>
-          </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv1"
+                android:layout_width="match_parent"
+                app:cardCornerRadius="12dp"
+                android:layout_margin="5dp"
+                android:layout_below="@id/lay1"
+                android:backgroundTint="#F3F3F3"
+                android:layout_height="200dp">
+
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_height="match_parent"/>
+            </androidx.cardview.widget.CardView>
 
 
             <TextView
@@ -77,6 +125,97 @@
                 android:orientation="horizontal"
                 android:padding="8dp" />
 
+            <LinearLayout
+                android:layout_below="@+id/recently_added_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Find Nearby Workshops"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="16dp"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+
+
+
+
+                <Button
+                    android:id="@+id/btnOpenMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Open Map"
+                    android:layout_marginTop="8dp"
+                    app:cornerRadius="10dp"
+                    android:backgroundTint="@color/black"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency Assistance"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="16dp"/>
+
+                <Button
+                    android:id="@+id/btnRequest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Request Assistance"
+                    android:layout_marginTop="8dp"
+                    app:cornerRadius="10dp"
+                    android:backgroundTint="@color/black"/>
+
+                <!-- 3D Car Modification -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3D Car Modification"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="16dp"/>
+
+                <Button
+                    android:id="@+id/btnModifyCar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Modify My Car"
+                    android:layout_marginTop="8dp"
+                    app:cornerRadius="10dp"
+                    android:backgroundTint="@color/black"/>
+
+                <!-- Promotional Banners -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Special Offers"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="16dp"/>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPagerOffers"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"/>
+
+
+            </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 </FrameLayout>

@@ -35,13 +35,13 @@
                 android:layout_centerInParent="true"
                 android:src="@drawable/logo" />
 
-            <ImageView
+            <!--<ImageView
                 android:id="@+id/icon_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:src="@drawable/baseline_shopping_cart_24" />
+                android:src="@drawable/baseline_shopping_cart_24" />-->
         </RelativeLayout>
 
         <androidx.fragment.app.FragmentContainerView

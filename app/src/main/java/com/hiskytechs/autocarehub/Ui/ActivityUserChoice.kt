@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import com.hiskytechs.autocarehub.R
-import com.hiskytechs.autocarehub.databinding.ActivitySparePartRequest2Binding
 import com.hiskytechs.autocarehub.databinding.ActivityUserChoiceBinding
 
 class ActivityUserChoice : AppCompatActivity() {

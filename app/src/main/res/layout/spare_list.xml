@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="170dp"
+    android:layout_height="260dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="230dp"
-        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:cardCornerRadius="10dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,57 +23,59 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:id="@+id/partImageView"
+                    android:layout_width="100dp"
                     android:layout_height="120dp"
+                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/logo" />
 
                 <TextView
+                    android:id="@+id/partNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:text="DFT Water Pump Aw4126" />
 
                 <TextView
+                    android:id="@+id/partPriceTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
                     android:text="OMR 187"
                     android:textColor="#2B3C98" />
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/Button"
+    <TextView
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+     android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#2B3C98"
+        android:text="Edit"
+        />
 
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="#2B3C98"
-                    android:text="Edit"
-                    app:icon="@drawable/baseline_mode_edit_24"
-
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/material"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="#DE0F24"
-                    android:text="Delete"
-                    app:icon="@drawable/baseline_delete_24"
-
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="end"
+        android:textColor="#DE0F24"
+        android:text="Delete"/>
 
 
-            </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

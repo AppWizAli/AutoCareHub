@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Image -->
+            <ImageView
+                android:id="@+id/imageParts"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo"
+                android:contentDescription="@null" />
+
+            <!-- Product Name -->
+            <TextView
+                android:id="@+id/textViewProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:text="DFT Water Pump Aw4126"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Price -->
+            <TextView
+                android:id="@+id/textViewPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="OMR 187"
+                android:layout_marginLeft="5dp"
+                android:textColor="#2B3C98"
+                android:textSize="14sp" />
+
+
+
+            <!-- Buy Now Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonBuyNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="10dp"
+                android:backgroundTint="@color/primary"
+                android:text="Buy Now"
+                android:textColor="@color/black"
+                app:cornerRadius="8dp"
+                app:iconGravity="start"
+                app:icon="@drawable/baseline_shopping_cart_24"
+                app:iconTint="@android:color/white" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
