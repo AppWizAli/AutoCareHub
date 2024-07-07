@@ -86,7 +86,7 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                                     startActivity(
                                         Intent(
                                             this@ActivityLoginWorkshop,
-                                            ActivityWorkShopHome::class.java
+                                            ActivityActivityWorkShopHome::class.java
                                         )
                                     )
                                 } else {
@@ -140,7 +140,7 @@ class ActivityLoginWorkshop : AppCompatActivity() {
 
                         if (isRegister) {
                             Log.d("Login", "User is registered, navigating to Home")
-                            startActivity(Intent(this, ActivityWorkShopHome::class.java))
+                            startActivity(Intent(this, ActivityActivityWorkShopHome::class.java))
                         } else {
                             Log.d(
                                 "Login",
