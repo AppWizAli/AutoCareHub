@@ -35,7 +35,7 @@ class ActivitySplash : AppCompatActivity() {
 
             else
             {
-                startActivity(Intent(this@ActivitySplash,ActivityUserChoice::class.java))
+                startActivity(Intent(this@ActivitySplash,ActivityIntro1::class.java))
             }
 
 

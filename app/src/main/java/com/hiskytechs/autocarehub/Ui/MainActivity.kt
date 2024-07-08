@@ -12,18 +12,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var mySharedPref: MySharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+mySharedPref=MySharedPref(this)
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
@@ -56,9 +58,16 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle("Logout!!")
         builder.setMessage("Are you sure you want to logout?")
         builder.setPositiveButton("Yes") { dialog, _ ->
-            // Navigate to ActivityChoice
+            // Clear user login state
+            val mySharedPref = MySharedPref(this)
+            mySharedPref.clearUserLogin()  // Clear workshop login state
+
+
+
             val intent = Intent(this, ActivityUserChoice::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+            finish()
             dialog.dismiss()
         }
         builder.setNegativeButton("No") { dialog, _ ->
@@ -67,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
         builder.create().show()
     }
+
 
     private fun setupLogoAnimation() {
         val rotate = RotateAnimation(

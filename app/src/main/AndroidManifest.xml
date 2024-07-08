@@ -84,12 +84,8 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivityActivityWorkShopHome"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Ui.ActivityWorkshopRegistration"
@@ -98,7 +94,7 @@
             android:name=".Ui.ActivityEditSparePart"
             android:exported="false" />
         <activity
-            android:name=".Ui.ActivitySeeAllAparePart"
+            android:name=".Ui.ActivitySeeAllSpareParts"
             android:exported="false" />
         <activity
             android:name=".Ui.ActivitySupplierInquiryDetails"
@@ -151,7 +147,11 @@
         <activity
             android:name=".Ui.ActivitySplash"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Ui.MainActivity"

@@ -24,8 +24,6 @@ class AdapterSpareParts(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val sparePart = sparePartsList[position]
-
-        // Bind data to views in ViewHolder
         holder.bind(sparePart)
     }
 
@@ -43,8 +41,7 @@ class AdapterSpareParts(
             textViewProductName.text = sparePart.partName
             textViewPrice.text = sparePart.partPrice.toString()
             Glide.with(context).load(sparePart.partImage).placeholder(R.drawable.logo).into(image)
-            // Set onClickListener for Buy Now button if needed
-            // buttonBuyNow.setOnClickListener { /* Handle buy now action */ }
+
         }
     }
 }

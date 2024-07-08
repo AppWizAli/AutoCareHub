@@ -15,7 +15,7 @@ class ActivityIntro2 : AppCompatActivity() {
         binding= ActivityIntro2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Load the animation
+
         val imageAnimation = AnimationUtils.loadAnimation(this, R.anim.intro_image_animation)
         binding.image.startAnimation(imageAnimation)
 

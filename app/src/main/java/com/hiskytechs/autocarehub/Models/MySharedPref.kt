@@ -33,6 +33,10 @@ class MySharedPref(var context: Context) {
         editor.putBoolean("IsWorkshopLoggedin", false)
         editor.apply()
     }
+    fun clearUserLogin() {
+        editor.putBoolean("IsUserLoggedin", false)
+        editor.apply()
+    }
 
 
     fun saveUserDocId( userdocId:String)
