@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/primary">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary"
         android:orientation="vertical"
         android:padding="16dp">
+
         <ImageView
             android:id="@+id/back_arrow"
             android:layout_width="wrap_content"
@@ -24,7 +26,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"
+            android:onClick="onSelectImage" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +36,7 @@
             android:fontFamily="@font/poppinsbold"
             android:layout_marginBottom="16dp"
             android:textSize="17sp"
-          android:text="Upload Image" />
+            android:text="Upload Image" />
 
         <EditText
             android:id="@+id/username"
@@ -43,25 +47,24 @@
             android:hint="Enter UserName"
             android:inputType="text"
             android:background="@drawable/shapelogin"
-            android:paddingStart="9dp"
-            />
+            android:paddingStart="9dp" />
+
         <EditText
             android:id="@+id/useremail"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_below="@id/title"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
             android:fontFamily="@font/poppinregular"
             android:hint="Enter Email"
             android:inputType="textEmailAddress"
             android:background="@drawable/shapelogin"
-            android:paddingStart="9dp"/>
+            android:paddingStart="9dp" />
+
         <EditText
             android:id="@+id/useraddress"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_below="@id/title"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
             android:fontFamily="@font/poppinregular"
@@ -74,26 +77,27 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:inputType="number"
-            android:layout_below="@id/title"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/shapelogin"
             android:fontFamily="@font/poppinregular"
             android:hint="Enter Phone Number"
             android:paddingStart="9dp" />
-        <Spinner
-            android:id="@+id/spinner_services"
+
+        <Button
+            android:id="@+id/btn_select_location"
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="20dp"
             android:layout_height="45dp"
-            android:background="@drawable/shapelogin"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginHorizontal="20dp"
+            android:text="Select Location"
+            android:background="@drawable/shapelogin"
+            android:textColor="@color/white" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/Register"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_below="@id/forgot_password"
             android:layout_marginTop="30dp"
             android:layout_marginHorizontal="50dp"
             android:text="Register"
@@ -101,10 +105,7 @@
             android:textColor="@color/white"
             android:backgroundTint="@color/black"
             android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
-            android:fontFamily="monospace"/>
-
-
+            android:fontFamily="monospace" />
 
     </LinearLayout>
-
 </ScrollView>

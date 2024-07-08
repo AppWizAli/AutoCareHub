@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
 import com.hiskytechs.autocarehub.Models.ModelOffers
@@ -19,10 +20,20 @@ class OfferViewPagerAdapter(private val context: Context, private val list: List
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val inflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout.offer_view_pager_item, container, false)
-        val imageView = view.findViewById<ImageView>(R.id.imageViewoffer)
+        val imageView = view.findViewById<ImageView>(R.id.imageViewOffer)
+        val textViewTitle = view.findViewById<TextView>(R.id.textViewOfferTitle)
+        val textViewDescription = view.findViewById<TextView>(R.id.textViewOfferDescription)
+        val textViewValidUntil = view.findViewById<TextView>(R.id.textViewOfferValidUntil)
+
+        val offer = list[position]
+
+        textViewTitle.text = offer.title
+        textViewDescription.text = offer.description
+        textViewValidUntil.text = "Valid until: ${offer.validUntil}"
 
         Glide.with(context)
-            .load(list[position].imageUrl).placeholder(R.drawable.logo)
+            .load(offer.imageUrl)
+            .placeholder(R.drawable.logo)
             .into(imageView)
 
         container.addView(view)

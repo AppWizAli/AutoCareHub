@@ -96,7 +96,7 @@ db.collection("User")
         binding.btnRequest.setOnClickListener {
             startActivity(Intent(requireActivity(), ActivityEmergencyRequest::class.java))
         }
-        binding.btnModifyCar.setOnClickListener {
+        binding.btnModifycar.setOnClickListener {
             startActivity(Intent(requireActivity(), ActivityModifyCar::class.java))
         }
         binding.btnOpenMap.setOnClickListener {
