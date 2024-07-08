@@ -83,8 +83,14 @@
             android:name=".Ui.ActivityWorkShopReg3"
             android:exported="false" />
         <activity
-            android:name=".Ui.ActivityWorkShopHome"
-            android:exported="false" />
+            android:name=".Ui.ActivityActivityWorkShopHome"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Ui.ActivityWorkshopRegistration"
             android:exported="false" />
@@ -145,11 +151,7 @@
         <activity
             android:name=".Ui.ActivitySplash"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Ui.MainActivity"
