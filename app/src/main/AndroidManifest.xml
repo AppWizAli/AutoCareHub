@@ -84,9 +84,8 @@
             android:exported="false" />
         <activity
             android:name=".Ui.ActivityActivityWorkShopHome"
-            android:exported="false" >
+            android:exported="false" />
 
-        </activity>
         <activity
             android:name=".Ui.ActivityWorkshopRegistration"
             android:exported="false" />
@@ -94,7 +93,7 @@
             android:name=".Ui.ActivityEditSparePart"
             android:exported="false" />
         <activity
-            android:name=".Ui.ActivitySeeAllSpareParts"
+            android:name=".Ui.ActivitySeeAllAparePart"
             android:exported="false" />
         <activity
             android:name=".Ui.ActivitySupplierInquiryDetails"
@@ -153,11 +152,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".Ui.MainActivity"
-            android:exported="true" >
+            android:exported="true"/>
 
-        </activity>
+
     </application>
 
 </manifest>

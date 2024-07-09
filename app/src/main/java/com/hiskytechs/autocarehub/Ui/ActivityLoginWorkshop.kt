@@ -57,7 +57,7 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                 val userPassword = userpswrd.text.toString()
 
                 db.collection("WorkshopUser")
-                    .whereEqualTo("userName", userEmail)
+                    .whereEqualTo("email", userEmail)
                     .whereEqualTo("password", userPassword)
                     .get()
                     .addOnCompleteListener { task ->

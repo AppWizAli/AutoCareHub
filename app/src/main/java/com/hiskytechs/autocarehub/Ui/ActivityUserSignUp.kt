@@ -1,23 +1,23 @@
 package com.hiskytechs.autocarehub.Ui
 
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.carrepairapp.model.ModelUser
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.hiskytechs.autocarehub.R
-import com.hiskytechs.autocarehub.databinding.ActivityMainBinding
 import com.hiskytechs.autocarehub.databinding.ActivityUserSignUpBinding
 import java.util.regex.Pattern
 
 class ActivityUserSignUp : AppCompatActivity() {
     private lateinit var binding: ActivityUserSignUpBinding
-    private var db = Firebase.firestore
+    private val db = Firebase.firestore
     private lateinit var dialog: Dialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserSignUpBinding.inflate(layoutInflater)
@@ -25,12 +25,11 @@ class ActivityUserSignUp : AppCompatActivity() {
 
         binding.apply {
             backArrow.setOnClickListener {
-               finish()
+                finish()
             }
 
             registerLink.setOnClickListener {
                 startActivity(Intent(this@ActivityUserSignUp, ActivityLoginUser::class.java))
-
             }
 
             loginButton.setOnClickListener {
@@ -40,6 +39,8 @@ class ActivityUserSignUp : AppCompatActivity() {
                 val userName = username.text.toString().trim()
                 val userPassword = userpswrd.text.toString().trim()
                 val confirmPassword = cpswrd.text.toString().trim()
+                val userPhone = phoneno.text.toString().trim()
+                val userAddress = address.text.toString().trim()
                 val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                 val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{6,}$"
 
@@ -64,6 +65,12 @@ class ActivityUserSignUp : AppCompatActivity() {
                 } else if (userPassword != confirmPassword) {
                     cpswrd.error = "Passwords do not match"
                     closeAnimation()
+                } else if (userPhone.isEmpty()) {
+                    phoneno.error = "Phone number is required"
+                    closeAnimation()
+                } else if (userAddress.isEmpty()) {
+                    address.error = "Address is required"
+                    closeAnimation()
                 } else {
                     db.collection("User")
                         .whereEqualTo("email", userEmail)
@@ -75,10 +82,12 @@ class ActivityUserSignUp : AppCompatActivity() {
                                     useremail.error = "Email is already registered"
                                     closeAnimation()
                                 } else {
-                                    var modelUser = ModelUser(
+                                    val modelUser = ModelUser(
                                         userName = userName,
                                         email = userEmail,
                                         password = userPassword,
+                                        phoneNumber = userPhone,
+                                        address = userAddress
                                     )
                                     db.collection("User").add(modelUser)
                                         .addOnSuccessListener { documentRef ->
@@ -91,16 +100,19 @@ class ActivityUserSignUp : AppCompatActivity() {
                                                     finish()
                                                 }
                                                 .addOnFailureListener { e ->
+                                                    Log.e("FirestoreError", "Error adding document", e)
                                                     Toast.makeText(this@ActivityUserSignUp, "SignUp unsuccessful", Toast.LENGTH_SHORT).show()
                                                     closeAnimation()
                                                 }
                                         }
-                                        .addOnFailureListener {
+                                        .addOnFailureListener { e ->
+                                            Log.e("FirestoreError", "Error adding document", e)
                                             Toast.makeText(this@ActivityUserSignUp, "SignUp unsuccessful", Toast.LENGTH_SHORT).show()
                                             closeAnimation()
                                         }
                                 }
                             } else {
+                                Log.e("FirestoreError", "Error getting documents", task.exception)
                                 Toast.makeText(this@ActivityUserSignUp, "Error checking email", Toast.LENGTH_SHORT).show()
                                 closeAnimation()
                             }
@@ -108,21 +120,16 @@ class ActivityUserSignUp : AppCompatActivity() {
                 }
             }
         }
-
-
     }
 
-
-    fun showAnimation() {
+    private fun showAnimation() {
         dialog = Dialog(this@ActivityUserSignUp)
-        dialog.setContentView(R.layout.dialog_anim_lodaing)
-  dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setContentView(R.layout.dialog_anim_lodaing) // Ensure the correct layout name
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
     }
 
-    fun closeAnimation() {
+    private fun closeAnimation() {
         dialog.dismiss()
     }
-
-
 }

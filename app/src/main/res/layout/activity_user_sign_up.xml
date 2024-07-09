@@ -85,6 +85,30 @@
         android:fontFamily="@font/poppinregular"
         android:hint="Confirm Password"
         android:paddingStart="9dp" />
+  <EditText
+        android:id="@+id/phoneno"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:inputType="textPassword"
+        android:layout_below="@id/title"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shapelogin"
+        android:fontFamily="@font/poppinregular"
+        android:hint="Phone no"
+        android:paddingStart="9dp" />
+  <EditText
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:inputType="textPassword"
+        android:layout_below="@id/title"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shapelogin"
+        android:fontFamily="@font/poppinregular"
+        android:hint="Address"
+        android:paddingStart="9dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_button"

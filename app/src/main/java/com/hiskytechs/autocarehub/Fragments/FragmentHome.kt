@@ -73,7 +73,7 @@ class FragmentHome : Fragment(), OnMapReadyCallback {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val rootView = binding.root
         viewPager = rootView.findViewById(R.id.viewPager)
-        offersViewPager = rootView.findViewById(R.id.viewPagerOffers)
+
 
         adapter = ImageViewPagerAdapter(requireContext(), imageList)
         viewPager.adapter = adapter
@@ -106,7 +106,7 @@ db.collection("User")
         startAutoScroll()
         setupRecyclerView()
         fetchSpareParts()
-        fetchOffersFromFirestore()
+        //fetchOffersFromFirestore()
         return rootView
     }
 

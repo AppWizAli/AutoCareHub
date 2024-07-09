@@ -1,11 +1,15 @@
 package com.hiskytechs.autocarehub.Models
 
+import com.google.firebase.Timestamp
+
 data class ModelRequest(
-    var workshopName: String = "",
-    var workshopAddress: String = "",
+    var workshopDocId: String = "",
     var userId: String = "",
     var userAddress: String = "",
     var userIssue: String = "",
     var requestType: String = "", // pending or approved
-    var requestDocId: String = "" // to store Firestore document ID
+    var requestDocId: String = "" ,
+    var userName: String = "",
+    var email: String = "",
+    var phoneNumber: String = ""
 )

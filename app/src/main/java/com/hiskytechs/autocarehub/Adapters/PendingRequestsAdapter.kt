@@ -1,5 +1,6 @@
 package com.hiskytechs.autocarehub.Adapters
 
+import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ class PendingRequestsAdapter(
 ) : RecyclerView.Adapter<PendingRequestsAdapter.PendingRequestViewHolder>() {
 
     private val db = FirebaseFirestore.getInstance()
+
     private var requests: MutableList<ModelRequest> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PendingRequestViewHolder {
@@ -45,8 +47,7 @@ class PendingRequestsAdapter(
         private val btnApproveRequest: Button = itemView.findViewById(R.id.btnApproveRequest)
 
         fun bind(request: ModelRequest) {
-            tvWorkshopName.text = request.workshopName
-            tvWorkshopAddress.text = request.workshopAddress
+
             tvUserIssue.text = request.userIssue
 
             // Set initial text of the button based on requestType
@@ -81,4 +82,5 @@ class PendingRequestsAdapter(
                 }
         }
     }
+
 }

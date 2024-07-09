@@ -48,6 +48,7 @@ class ActivityActivityWorkShopHome : AppCompatActivity() {
                 startActivity(Intent(this@ActivityActivityWorkShopHome, ActivityWorkshopPendingReq::class.java))
             }
             seeAll.setOnClickListener {
+
                 startActivity(Intent(this@ActivityActivityWorkShopHome, ActivitySeeAllSpareParts::class.java))
             }
             add.setOnClickListener {

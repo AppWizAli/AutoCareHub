@@ -7,25 +7,31 @@ import com.bumptech.glide.Glide
 import com.hiskytechs.autocarehub.Models.ModelSparePart
 import com.hiskytechs.autocarehub.databinding.SpareListBinding
 
-class AdapterSeeAllSpareParts(private val sparePartsList: ArrayList<ModelSparePart>) :
+class AdapterSeeAllSpareParts(private val sparePartsList: ArrayList<ModelSparePart>,var listener:onItemclicklistener) :
     RecyclerView.Adapter<AdapterSeeAllSpareParts.SparePartViewHolder>() {
+interface onItemclicklistener{
+fun ondeleteclick(spare_model:ModelSparePart)
+fun oneditclick(spare_model:ModelSparePart)
+
+}
 
     inner class SparePartViewHolder(private val binding: SpareListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(sparePart: ModelSparePart) {
             binding.partNameTextView.text = sparePart.partName
+
             binding.partPriceTextView.text = "OMR ${sparePart.partPrice}"
             Glide.with(binding.partImageView.context)
                 .load(sparePart.partImage)
                 .into(binding.partImageView)
 
             binding.editButton.setOnClickListener {
-                // Handle edit button click
+                listener.oneditclick(sparePart)
             }
 
             binding.deleteButton.setOnClickListener {
-                // Handle delete button click
+                listener.ondeleteclick(sparePart)
             }
         }
     }

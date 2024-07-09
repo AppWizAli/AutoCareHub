@@ -1,6 +1,7 @@
 package com.hiskytechs.autocarehub.Ui
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.hiskytechs.autocarehub.Models.ModelSparePart
 import com.hiskytechs.autocarehub.Models.MySharedPref
+import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.databinding.ActivityAddSparePart1Binding
 import java.util.*
 
@@ -18,8 +20,9 @@ class ActivityAddSparePart1 : AppCompatActivity() {
     private lateinit var binding: ActivityAddSparePart1Binding
     private lateinit var firestore: FirebaseFirestore
     private lateinit var storage: FirebaseStorage
-    private var imageUri: Uri? = null
+      private var imageUri: Uri? = null
     private val PICK_IMAGE_REQUEST = 1
+    private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +37,7 @@ class ActivityAddSparePart1 : AppCompatActivity() {
         }
 
         binding.addSparePartButton.setOnClickListener {
+
             addSparePart()
         }
     }
@@ -104,4 +108,15 @@ class ActivityAddSparePart1 : AppCompatActivity() {
                 Toast.makeText(this, "Failed to upload image: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
+    fun showAnimation() {
+        dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_anim_lodaing)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
+    }
+
+    fun closeAnimation() {
+        dialog.dismiss()
+    }
+
 }

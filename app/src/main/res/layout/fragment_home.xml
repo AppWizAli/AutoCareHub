@@ -28,7 +28,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:padding="8dp">
+                    android:padding="8dp"
+                   >
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="60dp"
@@ -77,6 +78,7 @@
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_margin="1dp"
+
                     android:layout_height="match_parent"/>
             </androidx.cardview.widget.CardView>
 
@@ -209,20 +211,6 @@
                     android:text="Modify MMy car" />
 
                 <!-- Promotional Banners -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Special Offers"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:layout_marginTop="16dp"/>
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/viewPagerOffers"
-                    android:layout_width="match_parent"
-                    android:layout_height="230dp"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="8dp"/>
 
 
             </LinearLayout>

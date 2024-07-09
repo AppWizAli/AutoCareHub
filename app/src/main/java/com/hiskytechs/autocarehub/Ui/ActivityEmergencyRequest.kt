@@ -46,7 +46,7 @@ modelUser= ModelUser()
                     }
                 }
                 workshopAdapter = WorkshopAdapter(this, workshops) { workshop ->
-                    selectedWorkshop = workshop
+                    selectedWorkshop = workshop!!
                     showAddRequestDialog()
                 }
                 binding.rv.apply {
@@ -79,14 +79,15 @@ modelUser= ModelUser()
             .setPositiveButton("Add Request") { _, _ ->
                 val userIssue = dialogBinding.issueEditText.text.toString().trim()
                 if (userIssue.isNotEmpty() && selectedWorkshop != null) {
-                    val modelRequest = ModelRequest(
-                        workshopName = selectedWorkshop!!.workshopName,
-                        workshopAddress = selectedWorkshop!!.workshopAddress,
-                        userId = mySharedPref.getUserDocId(), // Replace with actual user ID
-                        userAddress = modelUser.address, // Replace with actual user address
-                        userIssue = userIssue,
-                        requestType = "pending" // Initial request type
-                    )
+                    val modelRequest = ModelRequest()
+                    modelRequest.requestType="pending"
+                    modelRequest.userIssue=userIssue
+                    modelRequest.userId=modelUser.userID
+                    modelRequest.phoneNumber=modelUser.phoneNumber
+                    modelRequest.userAddress=modelUser.address
+                    modelRequest.workshopDocId= selectedWorkshop!!.workshopId
+
+
                     addRequestToFirestore(modelRequest)
                 } else {
                     Toast.makeText(this, "Please describe your issue", Toast.LENGTH_SHORT).show()

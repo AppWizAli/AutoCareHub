@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.hiskytechs.autocarehub.Models.ModelOffers
+import com.hiskytechs.autocarehub.Models.ModelRequest
 import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.databinding.ActivityWorkshophomeBinding
@@ -56,6 +57,39 @@ private lateinit var mySharedPref: MySharedPref
             addNews.setOnClickListener {
                 openAddNewsDialog()
             }
+
+
+            firestore.collection("Requests").whereEqualTo("workshopDocId",mySharedPref.getWorkShopDocId())
+                .get()
+                .addOnSuccessListener {  querry->
+                    var approveCount:Int=0
+                    var pendingCount:Int=0
+
+
+
+                    for (document in querry.documents)
+                    {
+                        var modelRequest=document.toObject(ModelRequest::class.java)!!
+                        if(modelRequest.requestType=="Approved")
+                        {
+                            approveCount++
+                        }
+                        if(modelRequest.requestType=="Pending")
+                        {
+                            pendingCount++
+
+                        }
+                    }
+
+
+                    binding.tvpending.text=pendingCount.toString()
+                    binding.approved.text=approveCount.toString()
+
+
+                }
+
+
+
             AddOffers.setOnClickListener {
                 openAddOfferDialog()
             }
