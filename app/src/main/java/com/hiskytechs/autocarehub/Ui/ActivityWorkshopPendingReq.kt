@@ -2,6 +2,7 @@ package com.hiskytechs.autocarehub.Ui
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
@@ -54,6 +55,12 @@ mySharedPref=MySharedPref(this)
                         pendingRequests.add(it)
                     }
                 }
+
+                if(pendingRequests.size==0)
+                {
+                    binding.textView22.visibility=View.VISIBLE
+                }
+
                 pendingRequestsAdapter.updateData(pendingRequests)
             }
             .addOnFailureListener { e ->

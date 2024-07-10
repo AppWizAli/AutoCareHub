@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.R
+import com.hiskytechs.autocarehub.activity_user_registration
 import com.hiskytechs.autocarehub.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -44,10 +45,13 @@ mySharedPref=MySharedPref(this)
 
     private fun onNavItemSelected(menuItem: MenuItem) {
         when (menuItem.itemId) {
-            R.id.nav_profile -> navController.navigate(R.id.fragmentProfile)
+            R.id.nav_profile ->
+            {
+                startActivity(Intent(this,activity_user_registration::class.java))
+            }
             R.id.nav_support -> navController.navigate(R.id.fragmentSupport)
             R.id.nav_privacy_policy -> navController.navigate(R.id.fragmentPrivacy)
-            R.id.nav_share -> Toast.makeText(this@MainActivity, "Share the app", Toast.LENGTH_SHORT).show()
+            R.id.nav_share -> share()
             R.id.nav_logout -> showLogoutDialog()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -87,5 +91,15 @@ mySharedPref=MySharedPref(this)
         rotate.duration = 2000 // 2 seconds
         rotate.repeatCount = Animation.INFINITE
         binding.appLogo.startAnimation(rotate)
+    }
+    private fun share(){
+        val content = "https://play.google.com/store/apps/details?id=com.tencent.ig"
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, content)
+        val chooserIntent = Intent.createChooser(intent, "Share via")
+
+        startActivity(chooserIntent)
     }
 }

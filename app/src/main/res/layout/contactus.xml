@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_height="480dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/logo"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact Us"
+        android:id="@+id/ct"
+        android:textColor="@color/primary"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-black"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="20dp"
+        android:paddingBottom="16dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/img_14"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/phoneicon"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_alignLeft="@id/phoneicon"
+            android:text="Phone No"
+            android:id="@+id/pt"
+            android:textColor="#001547"
+            android:drawablePadding="10dp"
+            android:layout_marginHorizontal="40dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:text="+923227970173"
+            android:id="@+id/phoneno"
+            android:layout_below="@id/pt"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="52dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/img_12"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/whtsapicon"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_alignLeft="@id/whtsapicon"
+            android:text="Whatsaap Us"
+            android:id="@+id/wt"
+            android:textColor="#001547"
+            android:drawablePadding="10dp"
+            android:layout_marginHorizontal="40dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:text="+923336052711"
+            android:id="@+id/whtsapno"
+            android:layout_below="@id/wt"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="52dp"/>
+    </RelativeLayout>      <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/img_13"
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/mailicon"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_alignLeft="@id/mailicon"
+        android:text="Email Us"
+        android:id="@+id/mt"
+        android:drawablePadding="10dp"
+        android:textColor="#001547"
+        android:layout_marginHorizontal="40dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:text="madihakhalid@gmail.com"
+        android:id="@+id/mail"
+        android:layout_below="@id/mt"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="52dp"/>
+</RelativeLayout>
+
+</LinearLayout>

@@ -18,6 +18,9 @@
         android:theme="@style/Theme.AutoCareHub"
         tools:targetApi="31">
         <activity
+            android:name=".activity_user_registration"
+            android:exported="false" />
+        <activity
             android:name=".Ui.ActivitySeeAllSpareParts"
             android:exported="false" />
         <activity
@@ -85,7 +88,6 @@
         <activity
             android:name=".Ui.ActivityActivityWorkShopHome"
             android:exported="false" />
-
         <activity
             android:name=".Ui.ActivityWorkshopRegistration"
             android:exported="false" />
@@ -152,13 +154,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".Ui.MainActivity"
-            android:exported="true"/>
-
-
+            android:exported="true" />
     </application>
 
 </manifest>

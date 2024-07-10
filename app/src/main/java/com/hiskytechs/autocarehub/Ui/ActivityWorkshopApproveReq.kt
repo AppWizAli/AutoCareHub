@@ -2,6 +2,8 @@ package com.hiskytechs.autocarehub.Ui
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +13,7 @@ import com.hiskytechs.autocarehub.Adapters.PendingRequestsAdapter
 import com.hiskytechs.autocarehub.Models.ModelRequest
 import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.R
+import com.hiskytechs.autocarehub.databinding.ActivityWorkshopApproveReqBinding
 
 class ActivityWorkshopApproveReq : AppCompatActivity() {
 
@@ -18,6 +21,7 @@ class ActivityWorkshopApproveReq : AppCompatActivity() {
     private lateinit var adapter: PendingRequestsAdapter
     private lateinit var db: FirebaseFirestore
     private lateinit var dialog: Dialog
+
     private lateinit var mySharedPref: MySharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +29,7 @@ class ActivityWorkshopApproveReq : AppCompatActivity() {
         setContentView(R.layout.activity_workshop_approve_req)
 
         mySharedPref = MySharedPref(this)
+
 
         // Initialize Firestore
         db = FirebaseFirestore.getInstance()
@@ -34,6 +39,7 @@ class ActivityWorkshopApproveReq : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = PendingRequestsAdapter(this)
         recyclerView.adapter = adapter
+
 
         showAnimation()
         // Fetch approved requests
@@ -55,6 +61,11 @@ class ActivityWorkshopApproveReq : AppCompatActivity() {
                         it.requestDocId = document.id // Set the document ID
                         requests.add(it)
                     }
+                }
+                if(requests.size==0)
+                {
+                    var text=findViewById<TextView>(R.id.text1)
+                   text.visibility= View.VISIBLE
                 }
                 adapter.updateData(requests)
             }

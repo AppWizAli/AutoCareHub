@@ -17,6 +17,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.hiskytechs.autocarehub.Adapters.AdapterSeeAllSpareParts
 import com.hiskytechs.autocarehub.Models.ModelRequest
 import com.hiskytechs.autocarehub.Models.ModelSparePart
+import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.databinding.ActivitySeeAllSparePartsBinding
 
@@ -28,12 +29,13 @@ class ActivitySeeAllSpareParts : AppCompatActivity(), AdapterSeeAllSpareParts.on
     private lateinit var dialog: Dialog
     private val PICK_IMAGE_REQUEST = 1
     private var imageUri: Uri? = null
+    private lateinit var mySharedPref: MySharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySeeAllSparePartsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+mySharedPref=MySharedPref(this)
         binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
         fetchSparePartsFromFirestore()
 
@@ -45,6 +47,7 @@ class ActivitySeeAllSpareParts : AppCompatActivity(), AdapterSeeAllSpareParts.on
         showAnimation()
 
         db.collection("SpareParts")
+            .whereEqualTo("workshopId",mySharedPref.getWorkShopDocId())
             .get()
             .addOnSuccessListener { documents ->
 closeAnimation()

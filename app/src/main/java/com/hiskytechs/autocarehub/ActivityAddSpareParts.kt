@@ -99,6 +99,7 @@ class ActivityAddSpareParts : AppCompatActivity() {
                      private fun showAnimation() {
                             dialog = Dialog(this@ActivityAddSpareParts)
                             dialog.setContentView(R.layout.dialog_anim_lodaing)
+                         dialog.setCancelable(false)
                             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
                             dialog.show()
                         }
