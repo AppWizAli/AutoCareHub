@@ -8,8 +8,6 @@ class MySharedPref(var context: Context) {
     var editor=sharedpreferences.edit()
 
 
-
-
     fun saveuserLogin()
     {
         editor.putBoolean("IsUserLoggedin",true)

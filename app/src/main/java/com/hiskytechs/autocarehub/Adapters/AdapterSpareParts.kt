@@ -41,7 +41,6 @@ class AdapterSpareParts(
             textViewProductName.text = sparePart.partName
             textViewPrice.text = sparePart.partPrice.toString()
             Glide.with(context).load(sparePart.partImage).placeholder(R.drawable.logo).into(image)
-
         }
     }
 }

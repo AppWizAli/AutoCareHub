@@ -11,15 +11,15 @@ import com.hiskytechs.autocarehub.Models.MySharedPref
 import com.hiskytechs.autocarehub.databinding.ActivityAddSparePartsBinding
 
 class ActivityAddSpareParts : AppCompatActivity() {
-    private lateinit var binding:ActivityAddSparePartsBinding
+    private lateinit var binding: ActivityAddSparePartsBinding
     private lateinit var mySharedPref: MySharedPref
-    private var db=Firebase.firestore
-    private lateinit var dialog:Dialog
+    private var db = Firebase.firestore
+    private lateinit var dialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddSparePartsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        mySharedPref=MySharedPref(this@ActivityAddSpareParts)
+        mySharedPref = MySharedPref(this@ActivityAddSpareParts)
         binding.apply {
             backArrow.setOnClickListener {
                 finish()
@@ -96,15 +96,17 @@ class ActivityAddSpareParts : AppCompatActivity() {
             }
         }
     }
-                     private fun showAnimation() {
-                            dialog = Dialog(this@ActivityAddSpareParts)
-                            dialog.setContentView(R.layout.dialog_anim_lodaing)
-                         dialog.setCancelable(false)
-                            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-                            dialog.show()
-                        }
 
-                        private fun closeAnimation() {
-                            dialog.dismiss()
-                        }
-                    }
+
+    private fun showAnimation() {
+        dialog = Dialog(this@ActivityAddSpareParts)
+        dialog.setContentView(R.layout.dialog_anim_lodaing)
+        dialog.setCancelable(false)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
+    }
+
+    private fun closeAnimation() {
+        dialog.dismiss()
+    }
+}

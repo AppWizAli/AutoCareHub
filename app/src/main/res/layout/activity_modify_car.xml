@@ -6,4 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".ActivityModifyCar">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <FrameLayout
+            android:id="@+id/canvasLayout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="16dp"
+            android:background="@android:color/darker_gray">
+
+            <ImageView
+                android:id="@+id/carImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:contentDescription="Car Image" />
+
+            <!-- This view will host the parts on top of the car image -->
+            <com.hiskytechs.autocarehub.helper.DragResizeView
+                android:id="@+id/dragResizeView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+
+        <Button
+            android:id="@+id/uploadButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/canvasLayout"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:text="Upload Car Image" />
+
+        <LinearLayout
+            android:id="@+id/partsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/uploadButton"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:id="@+id/recentlyAddedRecyclerView"/>
+            <!-- Add more parts as needed -->
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
