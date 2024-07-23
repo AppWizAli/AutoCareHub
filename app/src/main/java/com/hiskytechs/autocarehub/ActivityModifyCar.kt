@@ -2,6 +2,7 @@ package com.hiskytechs.autocarehub
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -20,7 +21,7 @@ import com.hiskytechs.autocarehub.Adapters.PartAdapter
 import com.hiskytechs.autocarehub.Models.ModelSparePart
 import com.hiskytechs.autocarehub.databinding.ActivityModifyCarBinding
 import com.hiskytechs.autocarehub.helper.DragResizeView
-import com.hiskytechs.autocarehub.helper.ImageUtils
+import java.io.IOException
 
 class ActivityModifyCar : AppCompatActivity() {
 
@@ -30,7 +31,7 @@ class ActivityModifyCar : AppCompatActivity() {
     private lateinit var partsLayout: LinearLayout
     private val PICK_IMAGE_REQUEST = 1
 
-    var db = FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
 
     private lateinit var binding: ActivityModifyCarBinding
 
@@ -61,15 +62,13 @@ class ActivityModifyCar : AppCompatActivity() {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             val uri: Uri? = data.data
             uri?.let {
-                val inputStream = contentResolver.openInputStream(it)
-                val bitmap = inputStream?.let { stream ->
-                    ImageUtils.decodeSampledBitmapFromStream(
-                        stream,
-                        carImageView.width,
-                        carImageView.height
-                    )
+                try {
+                    val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, it)
+                    carImageView.setImageBitmap(bitmap)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
                 }
-                carImageView.setImageBitmap(bitmap)
             }
         }
     }
@@ -110,7 +109,6 @@ class ActivityModifyCar : AppCompatActivity() {
                     resource: Drawable,
                     transition: Transition<in Drawable>?
                 ) {
-                    // Resource is now available
                     dragResizeView.addPart(resource)
                 }
 
@@ -119,13 +117,4 @@ class ActivityModifyCar : AppCompatActivity() {
                 }
             })
     }
-
-//    private fun setupPartsDraggable() {
-//        val part1ImageView = findViewById<ImageView>(R.id.part1ImageView)
-//        val part2ImageView = findViewById<ImageView>(R.id.part2ImageView)
-//        // Add more parts if needed
-//
-//        part1ImageView.setOnClickListener { dragResizeView.addPart(part1ImageView.drawable) }
-//        part2ImageView.setOnClickListener { dragResizeView.addPart(part2ImageView.drawable) }
-//    }
 }

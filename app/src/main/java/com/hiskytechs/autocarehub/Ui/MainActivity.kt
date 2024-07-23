@@ -94,7 +94,6 @@ mySharedPref=MySharedPref(this)
     }
     private fun share(){
         val content = "https://play.google.com/store/apps/details?id=com.tencent.ig"
-
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_TEXT, content)

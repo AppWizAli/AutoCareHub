@@ -16,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_alignParentTop="true"
-            android:layout_margin="16dp"
-            android:background="@android:color/darker_gray">
+            android:layout_margin="16dp">
 
             <ImageView
                 android:id="@+id/carImageView"
@@ -63,4 +62,32 @@
     </RelativeLayout>
 
 
+    <FrameLayout
+        android:id="@+id/carFrameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sparePartsRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/carImageView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:contentDescription="Car Image"/>
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sparePartsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/carFrameLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
