@@ -13,10 +13,14 @@ import com.hiskytechs.autocarehub.Models.ModelSparePart
 import com.hiskytechs.autocarehub.R
 
 class AdapterSpareParts(
+    var listeneer:ItemClickListener,
     private val context: Context,
     private val sparePartsList: List<ModelSparePart>
 ) : RecyclerView.Adapter<AdapterSpareParts.ViewHolder>() {
-
+interface ItemClickListener
+{
+    fun OnBuyNowButtonClick(modelSparePart: ModelSparePart)
+}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_spare_buy, parent, false)
         return ViewHolder(view)
@@ -40,6 +44,10 @@ class AdapterSpareParts(
         fun bind(sparePart: ModelSparePart) {
             textViewProductName.text = sparePart.partName
             textViewPrice.text = sparePart.partPrice.toString()
+            buttonBuyNow.setOnClickListener()
+            {
+                listeneer.OnBuyNowButtonClick(sparePart)
+            }
             Glide.with(context).load(sparePart.partImage).placeholder(R.drawable.logo).into(image)
         }
     }

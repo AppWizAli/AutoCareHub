@@ -1,5 +1,6 @@
 package com.hiskytechs.autocarehub.Fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -23,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 import com.hiskytechs.autocarehub.ActivityModifyCar
 import com.hiskytechs.autocarehub.Adapters.AdapterSpareParts
+import com.hiskytechs.autocarehub.Models.ModelBuyPart
 import com.hiskytechs.autocarehub.Models.ModelOffers
 import com.hiskytechs.autocarehub.Models.ModelSparePart
 import com.hiskytechs.autocarehub.Models.MySharedPref
@@ -35,7 +37,7 @@ import com.hiskytechs.autocarehub.adapters.OfferViewPagerAdapter
 import com.hiskytechs.autocarehub.databinding.FragmentHomeBinding
 import com.hiskytechs.autocarehub.models.ModelNews
 
-class FragmentHome : Fragment(), OnMapReadyCallback {
+class FragmentHome : Fragment(), OnMapReadyCallback,AdapterSpareParts.ItemClickListener {
     private lateinit var binding: FragmentHomeBinding
     private var mGoogleMap: GoogleMap? = null
     var db = FirebaseFirestore.getInstance()
@@ -121,7 +123,7 @@ db.collection("User")
 
     private fun setupSparepartRecyclerView(sparePartsList: List<ModelSparePart>) {
         binding.recentlyAddedRecyclerView.layoutManager =  LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        val adapter = AdapterSpareParts(requireContext(), sparePartsList)
+        val adapter = AdapterSpareParts(this@FragmentHome,requireContext(), sparePartsList)
         binding.recentlyAddedRecyclerView.adapter = adapter
     }
 
@@ -189,5 +191,52 @@ db.collection("User")
 
     override fun onMapReady(p0: GoogleMap) {
         mGoogleMap = p0
+    }
+
+    override fun OnBuyNowButtonClick(modelSparePart: ModelSparePart) {
+        val alertDialogBuilder = AlertDialog.Builder(context)
+        alertDialogBuilder.apply {
+            setMessage("Are you sure you want to buy ${modelSparePart.partName}?")
+            setPositiveButton("Confirm") { dialog, which ->
+var modelBuyPart=ModelBuyPart()
+               var modelUser=ModelUser()
+                db.collection("User")
+                    .document(mySharedPref.getUserDocId()).get()
+                    .addOnSuccessListener {
+                            docu->
+
+                        modelUser=docu.toObject(ModelUser::class.java)!!
+
+                           }
+
+                modelBuyPart.userName=modelUser.userName
+                modelBuyPart.userId=modelUser.userID
+                modelBuyPart.email=modelUser.email
+                modelBuyPart.requestType="Pending"
+                modelBuyPart.phoneNumber=modelUser.phoneNumber
+                modelBuyPart.workshopDocId=modelSparePart.workshopId
+                modelBuyPart.partImage=modelSparePart.partImage
+                modelBuyPart.partName=modelSparePart.partName
+                modelBuyPart.partBrand=modelSparePart.partBrand
+                modelBuyPart.partPrice=modelSparePart.partPrice
+
+                db.collection("BuyRequest").add(modelBuyPart)
+                    .addOnSuccessListener {
+                        Toast.makeText(requireContext(), "Request has been sent successfully!!!", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener()
+                    {
+                        Toast.makeText(requireContext(), "Some thing went wrong", Toast.LENGTH_SHORT).show()
+                    }
+
+
+
+                dialog.dismiss()
+            }
+            setNegativeButton("Cancel") { dialog, which ->
+                dialog.dismiss()
+            }
+            create().show()
+        }
     }
 }

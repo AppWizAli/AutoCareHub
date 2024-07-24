@@ -208,7 +208,7 @@
                     android:textColor="@color/black"
                     android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
                     android:backgroundTint="@color/primary"
-                    android:text="Modify MMy car" />
+                    android:text="Modify My car" />
 
                 <!-- Promotional Banners -->
 

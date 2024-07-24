@@ -17,7 +17,7 @@
             android:id="@+id/tvTitleWorkshopName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Workshop Name"
+            android:text="User Phone Number"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -35,7 +35,7 @@
             android:id="@+id/tvTitleWorkshopAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Workshop Address"
+            android:text="User Address"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"

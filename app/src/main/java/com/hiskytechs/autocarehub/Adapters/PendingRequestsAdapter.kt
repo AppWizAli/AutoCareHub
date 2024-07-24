@@ -2,6 +2,7 @@ package com.hiskytechs.autocarehub.Adapters
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hiskytechs.autocarehub.Models.ModelRequest
 import com.hiskytechs.autocarehub.R
+import com.hiskytechs.autocarehub.Ui.ActivityActivityWorkShopHome
+import com.hiskytechs.autocarehub.Ui.MainActivity
 
 class PendingRequestsAdapter(
     private val context: Context
@@ -45,10 +48,10 @@ class PendingRequestsAdapter(
         private val tvWorkshopAddress: TextView = itemView.findViewById(R.id.tvWorkshopAddress)
         private val tvUserIssue: TextView = itemView.findViewById(R.id.tvUserIssue)
         private val btnApproveRequest: Button = itemView.findViewById(R.id.btnApproveRequest)
-
         fun bind(request: ModelRequest) {
-
             tvUserIssue.text = request.userIssue
+            tvWorkshopName.text=request.phoneNumber
+            tvWorkshopAddress.text=request.userAddress
 
             // Set initial text of the button based on requestType
             if (request.requestType == "Approved") {
@@ -76,6 +79,7 @@ class PendingRequestsAdapter(
                 .update("requestType", "Approved")
                 .addOnSuccessListener {
                     Toast.makeText(context, "Request Approved", Toast.LENGTH_SHORT).show()
+                    context.startActivity(Intent(context,ActivityActivityWorkShopHome::class.java))
                 }
                 .addOnFailureListener { e ->
                     // Handle failure, log the error or show an error message
