@@ -2,6 +2,7 @@ package com.hiskytechs.autocarehub.Ui
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +18,7 @@ class ActivityWorkshopPendingReq : AppCompatActivity() {
     private lateinit var binding: ActivityWorkshopPendingReqBinding
     private lateinit var db: FirebaseFirestore
     private lateinit var dialog: Dialog
- private lateinit var mySharedPref: MySharedPref
+    private lateinit var mySharedPref: MySharedPref
     private lateinit var pendingRequestsAdapter: PendingRequestsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,7 @@ class ActivityWorkshopPendingReq : AppCompatActivity() {
         setContentView(binding.root)
 
         db = FirebaseFirestore.getInstance()
-mySharedPref=MySharedPref(this)
+        mySharedPref = MySharedPref(this)
         setupRecyclerView()
         fetchPendingRequests()
     }
@@ -41,9 +42,12 @@ mySharedPref=MySharedPref(this)
 
     private fun fetchPendingRequests() {
         showAnimation()
+        val workshopDocId = mySharedPref.getWorkShopDocId()
+        Log.d("Firestore", "Fetching pending requests for workshopDocId: $workshopDocId")
+
         db.collection("Requests")
             .whereEqualTo("requestType", "pending")
-            .whereEqualTo("workshopDocId",mySharedPref.getWorkShopDocId())
+            .whereEqualTo("workshopDocId", workshopDocId)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 closeAnimation()
@@ -56,26 +60,30 @@ mySharedPref=MySharedPref(this)
                     }
                 }
 
-                if(pendingRequests.size==0)
-                {
-                    binding.textView22.visibility=View.VISIBLE
-                }
+                Log.d("Firestore", "Pending requests fetched: $pendingRequests")
 
-                pendingRequestsAdapter.updateData(pendingRequests)
+                if (pendingRequests.isEmpty()) {
+                    binding.textView22.visibility = View.VISIBLE
+                    Log.d("Firestore", "No pending requests found")
+                } else {
+                    binding.textView22.visibility = View.GONE
+                    pendingRequestsAdapter.updateData(pendingRequests)
+                }
             }
             .addOnFailureListener { e ->
                 closeAnimation()
-                // Handle failure to fetch data
+                Log.e("Firestore", "Error fetching pending requests", e)
             }
     }
-    fun showAnimation() {
+
+    private fun showAnimation() {
         dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_anim_lodaing)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
     }
 
-    fun closeAnimation() {
+    private fun closeAnimation() {
         dialog.dismiss()
     }
 }
