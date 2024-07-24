@@ -35,6 +35,9 @@ class ActivityAddSparePart1 : AppCompatActivity() {
         binding.chooseImageButton.setOnClickListener {
             chooseImage()
         }
+        binding.backArrow.setOnClickListener(){
+            finish()
+        }
 
         binding.addSparePartButton.setOnClickListener {
 
@@ -59,6 +62,7 @@ class ActivityAddSparePart1 : AppCompatActivity() {
     }
 
     private fun addSparePart() {
+        showAnimation()
         var mySharedPref=MySharedPref(this@ActivityAddSparePart1)
 
         val workshopId = mySharedPref.getWorkShopDocId()
@@ -79,6 +83,7 @@ class ActivityAddSparePart1 : AppCompatActivity() {
 
         storageReference.putFile(imageUri!!)
             .addOnSuccessListener {
+
                 storageReference.downloadUrl.addOnSuccessListener { uri ->
                     val partImage = uri.toString()
 
@@ -96,10 +101,12 @@ class ActivityAddSparePart1 : AppCompatActivity() {
 
                     firestore.collection("SpareParts").document(partId).set(sparePart)
                         .addOnSuccessListener {
+                            closeAnimation()
                             Toast.makeText(this, "Spare part added successfully", Toast.LENGTH_SHORT).show()
                             finish()
                         }
                         .addOnFailureListener { e ->
+                            closeAnimation()
                             Toast.makeText(this, "Failed to add spare part: ${e.message}", Toast.LENGTH_SHORT).show()
                         }
                 }

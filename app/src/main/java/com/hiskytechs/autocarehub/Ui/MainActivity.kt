@@ -1,7 +1,9 @@
 package com.hiskytechs.autocarehub.Ui
 
+import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.animation.Animation
@@ -49,8 +51,8 @@ mySharedPref=MySharedPref(this)
             {
                 startActivity(Intent(this,activity_user_registration::class.java))
             }
-            R.id.nav_support -> navController.navigate(R.id.fragmentSupport)
-            R.id.nav_privacy_policy -> navController.navigate(R.id.fragmentPrivacy)
+            R.id.nav_support -> suppoort()
+            R.id.nav_privacy_policy -> suppoort()
             R.id.nav_share -> share()
             R.id.nav_logout -> showLogoutDialog()
         }
@@ -100,5 +102,13 @@ mySharedPref=MySharedPref(this)
         val chooserIntent = Intent.createChooser(intent, "Share via")
 
         startActivity(chooserIntent)
+    }
+    private fun suppoort(){
+        val appPackageName = "com.tencent.ig"
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
+        } catch (e: ActivityNotFoundException) {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
+        }
     }
 }

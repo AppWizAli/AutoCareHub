@@ -1,6 +1,7 @@
 package com.hiskytechs.autocarehub.Ui
 
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 import com.hiskytechs.autocarehub.Models.ModelWorkshop
 import com.hiskytechs.autocarehub.Models.MySharedPref
+import com.hiskytechs.autocarehub.R
 import com.hiskytechs.autocarehub.databinding.ActivityLoginWorkshopBinding
 import com.hiskytechs.autocarehub.databinding.ActivityWorkshophomeBinding
 
@@ -19,6 +21,7 @@ class ActivityLoginWorkshop : AppCompatActivity() {
     private lateinit var binding: ActivityLoginWorkshopBinding
     private lateinit var db: FirebaseFirestore
     private lateinit var mySharedPref: MySharedPref
+    private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +56,7 @@ class ActivityLoginWorkshop : AppCompatActivity() {
             }
 
             loginButton.setOnClickListener {
+                showAnimation()
                 val userEmail = useremail.text.toString()
                 val userPassword = userpswrd.text.toString()
 
@@ -62,6 +66,7 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                     .get()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            closeAnimation()
                             val querySnapshot = task.result
                             if (querySnapshot != null && !querySnapshot.isEmpty) {
                                 val document = querySnapshot.documents[0]!!
@@ -169,5 +174,16 @@ class ActivityLoginWorkshop : AppCompatActivity() {
                     ).show()
                 }
             }
+    }
+    fun showAnimation() {
+        dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_anim_lodaing)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
+    }
+
+    fun closeAnimation() {
+        dialog.dismiss()
+
     }
 }

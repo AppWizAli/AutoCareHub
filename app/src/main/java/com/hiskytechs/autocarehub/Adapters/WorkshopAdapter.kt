@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.hiskytechs.autocarehub.Models.ModelWorkshop
 import com.hiskytechs.autocarehub.R
 
@@ -32,9 +34,13 @@ class WorkshopAdapter(private val context: Context, private val workshops: List<
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.workshopNameTextView)
         private val addressTextView: TextView = itemView.findViewById(R.id.workshopAddressTextView)
+ private val Image: ImageView = itemView.findViewById(R.id.workshopImageView)
+
 
         fun bind(workshop: ModelWorkshop) {
             nameTextView.text = workshop.workshopName
+            Glide.with(itemView.context).load(workshop.workshopImage).into(Image)
+
             addressTextView.text = workshop.workshopAddress
         }
     }
